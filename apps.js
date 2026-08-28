@@ -177,23 +177,57 @@ const timetable = {
 
 
 // Find today's day
-function showToday() {
+function displayTimetable() {
 
-    const days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-    ];
+    const timetableContainer = document.getElementById("timetable");
 
-    const today = days[new Date().getDay()];
-    const lectures = timetable[today] || [];
+    for (const day in timetable) {
 
-    console.log("Today:", today);
-    console.log("Lectures:", lectures);
+        const daySection = document.createElement("div");
+        daySection.className = "day-section";
+
+        const dayHeading = document.createElement("h3");
+        dayHeading.textContent = day;
+
+        daySection.appendChild(dayHeading);
+
+        const table = document.createElement("table");
+
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Type</th>
+                    <th>Teacher</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+
+        const tbody = table.querySelector("tbody");
+
+        timetable[day].forEach((lecture, index) => {
+
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${lecture.start} - ${lecture.end}</td>
+                <td>${lecture.subject}</td>
+                <td>${lecture.type}</td>
+                <td>${lecture.teacher}</td>
+                <td>${lecture.room}</td>
+            `;
+
+            tbody.appendChild(row);
+        });
+
+        daySection.appendChild(table);
+        timetableContainer.appendChild(daySection);
+    }
 }
 
-showToday();
+displayTimetable();
