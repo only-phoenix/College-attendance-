@@ -71,3 +71,46 @@
     margin-top: 35px;
     margin-bottom: 25px;
 }
+/* ===== MOBILE TIMETABLE ===== */
+
+#timetable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.day-section table {
+    min-width: 850px;
+}
+
+/* Keep the table readable on phones */
+.day-section th,
+.day-section td {
+    white-space: nowrap;
+}
+
+/* Smaller spacing on mobile */
+@media (max-width: 600px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .container > h2 {
+        font-size: 24px;
+        margin-top: 28px;
+    }
+
+    .day-section h3 {
+        font-size: 20px;
+    }
+
+    .day-section table {
+        min-width: 850px;
+    }
+
+    .day-section th,
+    .day-section td {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
