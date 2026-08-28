@@ -1,15 +1,73 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
+/* ===== TIMETABLE ===== */
+
+#timetable {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.day-section {
+    margin-bottom: 35px;
+}
+
+.day-section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1b4332;
+    border-left: 5px solid #1b4332;
+    padding-left: 10px;
+}
+
+/* Table */
+
+.day-section table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Table headings */
+
+.day-section th {
+    background-color: #1b4332;
+    color: white;
+    font-weight: 700;
+    padding: 13px 10px;
     text-align: center;
-    padding: 50px;
+    border: 1px solid #d9e2dc;
 }
 
-h1 {
-    color: #222;
+/* Table cells */
+
+.day-section td {
+    padding: 12px 10px;
+    text-align: center;
+    border: 1px solid #d9e2dc;
+    color: #333;
 }
 
-p {
-    color: #555;
-    font-size: 18px;
+/* Alternating rows */
+
+.day-section tbody tr:nth-child(even) {
+    background-color: #f4f8f5;
+}
+
+/* Hover */
+
+.day-section tbody tr:hover {
+    background-color: #e8f3ec;
+}
+
+/* ===== MAIN TIMETABLE HEADING ===== */
+
+.container > h2 {
+    text-align: center;
+    color: #1b4332;
+    font-size: 28px;
+    font-weight: 800;
+    margin-top: 35px;
+    margin-bottom: 25px;
 }
