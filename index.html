@@ -15,18 +15,56 @@
     <div class="container">
 
         <h1>🎓 College Attendance</h1>
-
         <p class="subtitle">My Attendance Dashboard</p>
 
-        <div class="attendance-card">
-            <h2>Overall Attendance</h2>
-            <p class="percentage">--%</p>
-            <p>Attendance will appear here</p>
+        <!-- Navigation -->
+        <div class="navigation">
+            <button onclick="showPage('timetablePage')">
+                📅 Timetable
+            </button>
+
+            <button onclick="showPage('attendancePage')">
+                ✅ Attendance
+            </button>
+
+            <button onclick="showPage('calculatorPage')">
+                📊 Calculator
+            </button>
         </div>
 
-        <h2>📚 My Timetable</h2>
 
-        <div id="timetable"></div>
+        <!-- TIMETABLE PAGE -->
+        <div id="timetablePage" class="page">
+
+            <h2>📚 My Timetable</h2>
+
+            <div id="timetable"></div>
+
+        </div>
+
+
+        <!-- ATTENDANCE PAGE -->
+        <div id="attendancePage" class="page hidden">
+
+            <h2>✅ Attendance</h2>
+
+            <p class="coming-soon">
+                Attendance tracker will be built here.
+            </p>
+
+        </div>
+
+
+        <!-- CALCULATOR PAGE -->
+        <div id="calculatorPage" class="page hidden">
+
+            <h2>📊 Attendance Calculator</h2>
+
+            <p class="coming-soon">
+                Attendance calculations will appear here.
+            </p>
+
+        </div>
 
     </div>
 
