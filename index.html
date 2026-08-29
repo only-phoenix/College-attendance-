@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,8 +17,11 @@
         <h1>🎓 College Attendance</h1>
         <p class="subtitle">My Attendance Dashboard</p>
 
-        <!-- Navigation -->
+
+        <!-- ================= NAVIGATION ================= -->
+
         <div class="navigation">
+
             <button onclick="showPage('timetablePage')">
                 📅 Timetable
             </button>
@@ -30,10 +33,12 @@
             <button onclick="showPage('calculatorPage')">
                 📊 Calculator
             </button>
+
         </div>
 
 
-        <!-- TIMETABLE PAGE -->
+        <!-- ================= TIMETABLE PAGE ================= -->
+
         <div id="timetablePage" class="page">
 
             <h2>📚 My Timetable</h2>
@@ -43,43 +48,87 @@
         </div>
 
 
-       <!-- attendance page -->
+        <!-- ================= ATTENDANCE PAGE ================= -->
+
         <div id="attendancePage" class="page hidden">
 
-    <h2>✅ Attendance</h2>
+            <h2>✅ Attendance</h2>
 
-    <div class="calendar-container">
 
-        <div class="calendar-header">
-            <button onclick="changeMonth(-1)">‹</button>
+            <!-- Calendar -->
 
-            <h3 id="monthYear"></h3>
+            <div class="calendar-container">
 
-            <button onclick="changeMonth(1)">›</button>
+                <div class="calendar-header">
+
+                    <button onclick="changeMonth(-1)">
+                        ‹
+                    </button>
+
+                    <h3 id="monthYear"></h3>
+
+                    <button onclick="changeMonth(1)">
+                        ›
+                    </button>
+
+                </div>
+
+
+                <!-- Weekdays -->
+
+                <div class="calendar-weekdays">
+
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                    <div>Sun</div>
+
+                </div>
+
+
+                <!-- Dates -->
+
+                <div id="calendar" class="calendar"></div>
+
+            </div>
+
+
+            <!-- Selected date -->
+
+            <p id="selectedDate" class="selected-date">
+                Select a date
+            </p>
+
+
+            <!-- ================= DAILY ATTENDANCE ================= -->
+
+            <div id="dailyAttendance" class="attendance-section">
+
+                <div class="attendance-empty">
+
+                    <div class="empty-icon">
+                        📅
+                    </div>
+
+                    <h3>Select a date</h3>
+
+                    <p>
+                        Select a date from the calendar
+                        to see your lectures.
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="calendar-weekdays">
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-            <div>Sun</div>
-        </div>
 
-        <div id="calendar" class="calendar"></div>
+        <!-- ================= CALCULATOR PAGE ================= -->
 
-    </div>
-
-    <p id="selectedDate" class="selected-date">
-        Select a date
-    </p>
-
-</div>
-
-
-        <!-- CALCULATOR PAGE -->
         <div id="calculatorPage" class="page hidden">
 
             <h2>📊 Attendance Calculator</h2>
@@ -91,6 +140,7 @@
         </div>
 
     </div>
+
 
     <script src="apps.js"></script>
 
