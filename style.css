@@ -113,4 +113,57 @@
         padding: 10px 12px;
         font-size: 14px;
     }
+/* ===== NAVIGATION ===== */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.navigation button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: #1b4332;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.navigation button:hover {
+    background-color: #2d6a4f;
+}
+
+/* ===== PAGES ===== */
+
+.hidden {
+    display: none;
+}
+
+.coming-soon {
+    text-align: center;
+    padding: 40px 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+
+/* ===== MOBILE NAVIGATION ===== */
+
+@media (max-width: 600px) {
+
+    .navigation {
+        gap: 7px;
+    }
+
+    .navigation button {
+        flex: 1;
+        padding: 11px 8px;
+        font-size: 13px;
+    }
+
 }
