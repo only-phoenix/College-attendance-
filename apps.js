@@ -832,3 +832,337 @@ function getSelectedWeekday() {
 displayTimetable();
 
 displayCalendar();
+/* =========================================================
+   ATTENDANCE CALCULATOR
+========================================================= */
+
+function calculateSubjectAttendance() {
+
+    const calculator =
+        document.getElementById("attendanceCalculator");
+
+    if (!calculator) return;
+
+    calculator.innerHTML = "";
+
+
+    const attendance =
+        getAttendanceData();
+
+
+    /*
+       Find all subjects from the timetable
+    */
+
+    const subjects = {};
+
+
+    for (const day in timetable) {
+
+        timetable[day].forEach(lecture => {
+
+            const subject =
+                lecture.subject;
+
+            if (!subjects[subject]) {
+
+                subjects[subject] = {
+                    present: 0,
+                    total: 0
+                };
+
+            }
+
+        });
+    }
+
+
+    /*
+       Go through every saved date
+       and count P/A for each lecture.
+    */
+
+    for (const dateKey in attendance) {
+
+        const dayAttendance =
+            attendance[dateKey];
+
+
+        /*
+           Get the weekday from the date
+        */
+
+        const parts =
+            dateKey.split("-");
+
+        const year =
+            Number(parts[0]);
+
+        const month =
+            Number(parts[1]) - 1;
+
+        const day =
+            Number(parts[2]);
+
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const weekday =
+            weekdays[date.getDay()];
+
+
+        /*
+           Skip dates with no timetable
+        */
+
+        if (!timetable[weekday]) {
+            continue;
+        }
+
+
+        /*
+           Count each lecture
+        */
+
+        timetable[weekday].forEach(
+            (lecture, index) => {
+
+                const lectureId =
+                    `lecture-${index}`;
+
+
+                const status =
+                    dayAttendance[lectureId];
+
+
+                /*
+                   Only count lectures that
+                   have actually been marked.
+                */
+
+                if (
+                    status === "P" ||
+                    status === "A"
+                ) {
+
+                    subjects[
+                        lecture.subject
+                    ].total++;
+
+
+                    if (status === "P") {
+
+                        subjects[
+                            lecture.subject
+                        ].present++;
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       Calculate overall attendance
+    */
+
+    let overallPresent = 0;
+    let overallTotal = 0;
+
+
+    for (const subject in subjects) {
+
+        overallPresent +=
+            subjects[subject].present;
+
+        overallTotal +=
+            subjects[subject].total;
+    }
+
+
+    let overallPercentage = 0;
+
+
+    if (overallTotal > 0) {
+
+        overallPercentage =
+            (overallPresent / overallTotal) * 100;
+    }
+
+
+    /*
+       Overall card
+    */
+
+    const overallCard =
+        document.createElement("div");
+
+    overallCard.className =
+        "overall-card";
+
+
+    overallCard.innerHTML = `
+
+        <div class="overall-title">
+            Overall Attendance
+        </div>
+
+        <div class="overall-percentage">
+            ${overallPercentage.toFixed(1)}%
+        </div>
+
+        <div class="overall-count">
+            ${overallPresent} Present
+            out of
+            ${overallTotal} marked classes
+        </div>
+
+    `;
+
+
+    calculator.appendChild(
+        overallCard
+    );
+
+
+    /*
+       Subject cards
+    */
+
+    for (const subject in subjects) {
+
+        const present =
+            subjects[subject].present;
+
+        const total =
+            subjects[subject].total;
+
+
+        let percentage = 0;
+
+
+        if (total > 0) {
+
+            percentage =
+                (present / total) * 100;
+        }
+
+
+        /*
+           Decide status
+        */
+
+        let statusText;
+        let statusClass;
+
+
+        if (total === 0) {
+
+            statusText =
+                "No attendance recorded";
+
+            statusClass =
+                "status-none";
+
+        }
+
+        else if (percentage >= 80) {
+
+            statusText =
+                "🟢 Safe";
+
+            statusClass =
+                "status-safe";
+
+        }
+
+        else if (percentage >= 75) {
+
+            statusText =
+                "🟡 Warning";
+
+            statusClass =
+                "status-warning";
+
+        }
+
+        else {
+
+            statusText =
+                "🔴 Below 75%";
+
+            statusClass =
+                "status-danger";
+        }
+
+
+        /*
+           Create card
+        */
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "subject-card";
+
+
+        card.innerHTML = `
+
+            <div class="subject-name">
+                ${subject}
+            </div>
+
+            <div class="subject-count">
+                ${present} Present
+                / ${total} marked
+            </div>
+
+            <div class="subject-percentage">
+                ${percentage.toFixed(1)}%
+            </div>
+
+            <div class="
+                subject-status
+                ${statusClass}
+            ">
+                ${statusText}
+            </div>
+
+        `;
+
+
+        calculator.appendChild(card);
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE CALCULATOR WHEN PAGE IS OPENED
+========================================================= */
+
+const originalShowPage =
+    showPage;
+
+
+showPage = function(pageId) {
+
+    originalShowPage(pageId);
+
+
+    if (pageId === "calculatorPage") {
+
+        calculateSubjectAttendance();
+    }
+
+};
