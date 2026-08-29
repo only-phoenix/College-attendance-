@@ -1,67 +1,29 @@
-/* ===== TIMETABLE ===== */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-#timetable {
-    width: 100%;
-    margin-top: 20px;
+* {
+    box-sizing: border-box;
 }
 
-.day-section {
-    margin-bottom: 35px;
-}
-
-.day-section h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #1b4332;
-    border-left: 5px solid #1b4332;
-    padding-left: 10px;
-}
-
-/* Table */
-
-.day-section table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-/* Table headings */
-
-.day-section th {
-    background-color: #1b4332;
-    color: white;
-    font-weight: 700;
-    padding: 13px 10px;
-    text-align: center;
-    border: 1px solid #d9e2dc;
-}
-
-/* Table cells */
-
-.day-section td {
-    padding: 12px 10px;
-    text-align: center;
-    border: 1px solid #d9e2dc;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8f6;
     color: #333;
 }
 
-/* Alternating rows */
-
-.day-section tbody tr:nth-child(even) {
-    background-color: #f4f8f5;
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Hover */
 
-.day-section tbody tr:hover {
-    background-color: #e8f3ec;
-}
-
-/* ===== MAIN TIMETABLE HEADING ===== */
+/* =========================================================
+   MAIN HEADINGS
+========================================================= */
 
 .container > h2 {
     text-align: center;
@@ -71,49 +33,11 @@
     margin-top: 35px;
     margin-bottom: 25px;
 }
-/* ===== MOBILE TIMETABLE ===== */
 
-#timetable {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
 
-.day-section table {
-    min-width: 850px;
-}
-
-/* Keep the table readable on phones */
-.day-section th,
-.day-section td {
-    white-space: nowrap;
-}
-
-/* Smaller spacing on mobile */
-@media (max-width: 600px) {
-
-    .container {
-        padding: 15px;
-    }
-
-    .container > h2 {
-        font-size: 24px;
-        margin-top: 28px;
-    }
-
-    .day-section h3 {
-        font-size: 20px;
-    }
-
-    .day-section table {
-        min-width: 850px;
-    }
-
-    .day-section th,
-    .day-section td {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-/* ===== NAVIGATION ===== */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .navigation {
     display: flex;
@@ -132,16 +56,20 @@
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .navigation button:hover {
     background-color: #2d6a4f;
 }
 
-/* ===== PAGES ===== */
+
+/* =========================================================
+   PAGE CONTROL
+========================================================= */
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .coming-soon {
@@ -152,23 +80,88 @@
 }
 
 
-/* ===== MOBILE NAVIGATION ===== */
+/* =========================================================
+   TIMETABLE
+========================================================= */
 
-@media (max-width: 600px) {
+#timetable {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
-    .navigation {
-        gap: 7px;
-    }
+.day-section {
+    margin-bottom: 35px;
+}
 
-    .navigation button {
-        flex: 1;
-        padding: 11px 8px;
-        font-size: 13px;
-    }
+.day-section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1b4332;
+    border-left: 5px solid #1b4332;
+    padding-left: 10px;
+}
 
-/* ===== CALENDAR ===== */
+
+/* Timetable table */
+
+.day-section table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Timetable headings */
+
+.day-section th {
+    background-color: #1b4332;
+    color: white;
+    font-weight: 700;
+    padding: 13px 10px;
+    text-align: center;
+    border: 1px solid #d9e2dc;
+    white-space: nowrap;
+}
+
+
+/* Timetable cells */
+
+.day-section td {
+    padding: 12px 10px;
+    text-align: center;
+    border: 1px solid #d9e2dc;
+    color: #333;
+    white-space: nowrap;
+}
+
+
+/* Alternating rows */
+
+.day-section tbody tr:nth-child(even) {
+    background-color: #f4f8f5;
+}
+
+
+/* Hover */
+
+.day-section tbody tr:hover {
+    background-color: #e8f3ec;
+}
+
+
+/* =========================================================
+   ATTENDANCE CALENDAR
+========================================================= */
 
 .calendar-container {
+    width: 100%;
     max-width: 500px;
     margin: 20px auto;
     background: white;
@@ -176,6 +169,9 @@
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
+
+
+/* Calendar top section */
 
 .calendar-header {
     display: flex;
@@ -191,6 +187,9 @@
     font-weight: 800;
 }
 
+
+/* Previous / Next buttons */
+
 .calendar-header button {
     width: 40px;
     height: 40px;
@@ -200,7 +199,17 @@
     color: white;
     font-size: 25px;
     cursor: pointer;
+    transition: 0.2s;
 }
+
+.calendar-header button:hover {
+    background: #2d6a4f;
+}
+
+
+/* =========================================================
+   CALENDAR GRID
+========================================================= */
 
 .calendar-weekdays,
 .calendar {
@@ -208,6 +217,9 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
+
+
+/* Weekday names */
 
 .calendar-weekdays div {
     text-align: center;
@@ -217,9 +229,15 @@
     font-size: 13px;
 }
 
+
+/* Calendar cells */
+
 .calendar div {
     min-height: 40px;
 }
+
+
+/* Individual date */
 
 .calendar .date {
     display: flex;
@@ -229,28 +247,251 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    transition: 0.15s;
+    position: relative;
 }
 
 .calendar .date:hover {
     background: #e8f3ec;
 }
 
+
+/* Empty spaces before/after dates */
+
 .calendar .empty {
     cursor: default;
+    background: transparent;
 }
+
+
+/* =========================================================
+   TODAY
+========================================================= */
 
 .calendar .today {
     border: 2px solid #1b4332;
 }
+
+
+/* =========================================================
+   SELECTED DATE
+========================================================= */
 
 .calendar .selected {
     background: #1b4332;
     color: white;
 }
 
+.calendar .selected:hover {
+    background: #2d6a4f;
+}
+
+
+/* =========================================================
+   ATTENDANCE MARKED DATE
+========================================================= */
+
+/*
+   A small dot will appear on dates for which
+   attendance has already been recorded.
+*/
+
+.calendar .has-attendance::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #1b4332;
+}
+
+
+/* =========================================================
+   HOLIDAY DATE
+========================================================= */
+
+.calendar .holiday {
+    background: #eeeeee;
+    color: #777;
+}
+
+.calendar .holiday:hover {
+    background: #e2e2e2;
+}
+
+
+/* If a holiday is selected */
+
+.calendar .holiday.selected {
+    background: #1b4332;
+    color: white;
+}
+
+
+/* =========================================================
+   SELECTED DATE TEXT
+========================================================= */
+
 .selected-date {
     text-align: center;
     font-weight: 700;
     color: #1b4332;
     margin-top: 20px;
+    font-size: 16px;
 }
+
+
+/* =========================================================
+   ATTENDANCE SECTION
+========================================================= */
+
+.attendance-section {
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.attendance-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.attendance-card h3 {
+    margin-top: 0;
+    color: #1b4332;
+}
+
+
+/* =========================================================
+   PRESENT / ABSENT BUTTONS
+========================================================= */
+
+.attendance-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.attendance-buttons button {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE DESIGN
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 15px;
+    }
+
+
+    /* Main heading */
+
+    .container > h2 {
+        font-size: 24px;
+        margin-top: 28px;
+        margin-bottom: 20px;
+    }
+
+
+    /* Navigation */
+
+    .navigation {
+        gap: 7px;
+        margin: 18px 0;
+    }
+
+    .navigation button {
+        flex: 1;
+        padding: 11px 8px;
+        font-size: 13px;
+    }
+
+
+    /* Timetable */
+
+    #timetable {
+        overflow-x: auto;
+    }
+
+    .day-section {
+        margin-bottom: 25px;
+    }
+
+    .day-section h3 {
+        font-size: 20px;
+    }
+
+    .day-section table {
+        min-width: 850px;
+    }
+
+    .day-section th,
+    .day-section td {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+
+    /* Calendar */
+
+    .calendar-container {
+        width: 100%;
+        padding: 12px;
+        margin: 15px auto;
+    }
+
+    .calendar-header h3 {
+        font-size: 18px;
+    }
+
+    .calendar-header button {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+    }
+
+    .calendar-weekdays,
+    .calendar {
+        gap: 4px;
+    }
+
+    .calendar-weekdays div {
+        font-size: 12px;
+        padding: 6px 1px;
+    }
+
+    .calendar .date {
+        min-height: 38px;
+        font-size: 13px;
+    }
+
+    .selected-date {
+        font-size: 15px;
+    }
+
+
+    /* Attendance */
+
+    .attendance-card {
+        padding: 15px;
+    }
+
+    .attendance-buttons {
+        flex-direction: column;
+    }
+
+}
+
