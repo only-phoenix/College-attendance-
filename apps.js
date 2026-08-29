@@ -131,7 +131,7 @@ const timetable = {
             end: "13:30",
             subject: "Chemistry",
             type: "Practical",
-            teacher: "Mandeep Kaur",
+            teacher: "Karan Bhalla",
             room: "Chem Lab 1"
         },
         {
