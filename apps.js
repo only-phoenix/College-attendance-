@@ -243,3 +243,110 @@ function showPage(pageId) {
 
     document.getElementById(pageId).classList.remove("hidden");
 }
+// ===== CALENDAR =====
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+function displayCalendar() {
+
+    const calendar = document.getElementById("calendar");
+    const monthYear = document.getElementById("monthYear");
+
+    calendar.innerHTML = "";
+
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    ];
+
+    monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+    // First day of month
+    let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+
+    // Convert Sunday = 0 to Monday = 0
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+    // Number of days
+    const daysInMonth = new Date(
+        currentYear,
+        currentMonth + 1,
+        0
+    ).getDate();
+
+    // Empty spaces before first day
+    for (let i = 0; i < firstDay; i++) {
+
+        const empty = document.createElement("div");
+        empty.className = "empty";
+
+        calendar.appendChild(empty);
+    }
+
+    // Dates
+    for (let day = 1; day <= daysInMonth; day++) {
+
+        const dateButton = document.createElement("div");
+
+        dateButton.className = "date";
+        dateButton.textContent = day;
+
+        dateButton.onclick = function () {
+            selectDate(day);
+        };
+
+        // Highlight today
+        const today = new Date();
+
+        if (
+            day === today.getDate() &&
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+        ) {
+            dateButton.classList.add("today");
+        }
+
+        calendar.appendChild(dateButton);
+    }
+}
+
+
+function changeMonth(direction) {
+
+    currentMonth += direction;
+
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+
+    displayCalendar();
+}
+
+
+function selectDate(day) {
+
+    const selectedDate = document.getElementById("selectedDate");
+
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    ];
+
+    selectedDate.textContent =
+        `📅 Selected date: ${day} ${monthNames[currentMonth]} ${currentYear}`;
+}
+
+
+// Start calendar
+displayCalendar();
