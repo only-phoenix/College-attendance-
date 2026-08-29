@@ -691,5 +691,169 @@ body {
         gap: 15px;
         flex-wrap: wrap;
     }
+/* =========================================================
+   ATTENDANCE CALCULATOR
+========================================================= */
+
+.calculator-subtitle {
+    text-align: center;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 25px;
 }
 
+
+/* Subject cards */
+
+.calculator-grid {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+
+.subject-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    border-left: 5px solid #1b4332;
+}
+
+
+/* Subject name */
+
+.subject-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1b4332;
+    margin-bottom: 8px;
+}
+
+
+/* Attendance numbers */
+
+.subject-count {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+/* Percentage */
+
+.subject-percentage {
+    font-size: 30px;
+    font-weight: 900;
+    color: #1b4332;
+}
+
+
+/* Status */
+
+.subject-status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* Safe */
+
+.status-safe {
+    background: #d8f3dc;
+    color: #1b4332;
+}
+
+
+/* Warning */
+
+.status-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+/* Danger */
+
+.status-danger {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+/* No attendance */
+
+.status-none {
+    background: #eeeeee;
+    color: #666;
+}
+
+
+/* Overall attendance */
+
+.overall-card {
+    grid-column: 1 / -1;
+
+    background: #1b4332;
+    color: white;
+
+    border-radius: 14px;
+    padding: 22px;
+
+    text-align: center;
+
+    margin-bottom: 5px;
+}
+
+
+.overall-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+
+.overall-percentage {
+    font-size: 34px;
+    font-weight: 900;
+}
+
+
+.overall-count {
+    margin-top: 5px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .subject-card {
+        padding: 17px;
+    }
+
+    .subject-percentage {
+        font-size: 27px;
+    }
+
+    .overall-card {
+        grid-column: 1;
+    }
+}
