@@ -857,3 +857,29 @@ body {
         grid-column: 1;
     }
 }
+/* =========================================================
+   SMART ATTENDANCE ADVICE
+========================================================= */
+
+.attendance-advice {
+    margin-top: 15px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.safe-advice {
+    background: #e8f3ec;
+    color: #1b4332;
+}
+
+.warning-advice {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.danger-advice {
+    background: #f8d7da;
+    color: #842029;
+}
