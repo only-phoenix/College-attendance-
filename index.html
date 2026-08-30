@@ -2,40 +2,65 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>College Attendance</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
     <div class="container">
 
-        <!-- ================= HEADER ================= -->
 
-        <h1>🎓 College Attendance</h1>
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <h1>
+            🎓 College Attendance
+        </h1>
 
         <p class="subtitle">
             My Attendance Dashboard
         </p>
 
 
-        <!-- ================= NAVIGATION ================= -->
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
 
         <div class="navigation">
 
-            <button onclick="showPage('timetablePage')">
+            <button
+                onclick="showPage('timetablePage')"
+            >
                 📅 Timetable
             </button>
 
-            <button onclick="showPage('attendancePage')">
+
+            <button
+                onclick="showPage('attendancePage')"
+            >
                 ✅ Attendance
             </button>
 
-            <button onclick="showPage('calculatorPage')">
+
+            <button
+                onclick="showPage('calculatorPage')"
+            >
                 📊 Calculator
             </button>
 
@@ -46,9 +71,14 @@
              TIMETABLE PAGE
         ================================================== -->
 
-        <div id="timetablePage" class="page">
+        <div
+            id="timetablePage"
+            class="page"
+        >
 
-            <h2>📚 My Timetable</h2>
+            <h2>
+                📚 My Timetable
+            </h2>
 
             <div id="timetable"></div>
 
@@ -59,31 +89,51 @@
              ATTENDANCE PAGE
         ================================================== -->
 
-        <div id="attendancePage" class="page hidden">
+        <div
+            id="attendancePage"
+            class="page hidden"
+        >
 
-            <h2>✅ Attendance</h2>
+            <h2>
+                ✅ Attendance
+            </h2>
 
 
-            <!-- Calendar -->
+            <!-- ================= CALENDAR ================= -->
 
             <div class="calendar-container">
 
                 <div class="calendar-header">
 
-                    <button onclick="changeMonth(-1)">
+
+                    <!-- Previous month -->
+
+                    <button
+                        onclick="changeMonth(-1)"
+                        aria-label="Previous month"
+                    >
                         ‹
                     </button>
 
+
+                    <!-- Month / Year -->
+
                     <h3 id="monthYear"></h3>
 
-                    <button onclick="changeMonth(1)">
+
+                    <!-- Next month -->
+
+                    <button
+                        onclick="changeMonth(1)"
+                        aria-label="Next month"
+                    >
                         ›
                     </button>
 
                 </div>
 
 
-                <!-- Weekdays -->
+                <!-- ================= WEEKDAYS ================= -->
 
                 <div class="calendar-weekdays">
 
@@ -98,24 +148,32 @@
                 </div>
 
 
-                <!-- Calendar dates -->
+                <!-- ================= DATES ================= -->
 
-                <div id="calendar" class="calendar"></div>
+                <div
+                    id="calendar"
+                    class="calendar"
+                ></div>
 
             </div>
 
 
-            <!-- Selected date -->
+            <!-- ================= SELECTED DATE ================= -->
 
-            <p id="selectedDate" class="selected-date">
+            <p
+                id="selectedDate"
+                class="selected-date"
+            >
                 Select a date
             </p>
 
 
-            <!-- Daily attendance -->
+            <!-- ================= DAILY ATTENDANCE ================= -->
 
-            <div id="dailyAttendance"
-                 class="attendance-section">
+            <div
+                id="dailyAttendance"
+                class="attendance-section"
+            >
 
                 <div class="attendance-empty">
 
@@ -123,11 +181,14 @@
                         📅
                     </div>
 
-                    <h3>Select a date</h3>
+                    <h3>
+                        Select a date
+                    </h3>
 
                     <p>
-                        Select a date from the calendar
-                        to see your lectures.
+                        Select a date from the
+                        calendar to see your
+                        lectures.
                     </p>
 
                 </div>
@@ -141,21 +202,26 @@
              CALCULATOR PAGE
         ================================================== -->
 
-        <div id="calculatorPage"
-             class="page hidden">
+        <div
+            id="calculatorPage"
+            class="page hidden"
+        >
 
-            <h2>📊 Attendance Calculator</h2>
+            <h2>
+                📊 Attendance Calculator
+            </h2>
 
             <p class="calculator-subtitle">
                 Your subject-wise attendance
             </p>
 
-            <div id="attendanceCalculator"
-                 class="calculator-grid">
 
-                <!-- Subject cards are generated by JavaScript -->
+            <!-- JavaScript creates subject cards here -->
 
-            </div>
+            <div
+                id="attendanceCalculator"
+                class="calculator-grid"
+            ></div>
 
         </div>
 
@@ -163,7 +229,9 @@
     </div>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
 
     <script src="apps.js"></script>
 
