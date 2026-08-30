@@ -825,178 +825,6 @@ function getSelectedWeekday() {
 }
 
 
-/* =========================================================
-   START
-========================================================= */
-
-displayTimetable();
-
-displayCalendar();
-/* =========================================================
-   ATTENDANCE CALCULATOR
-========================================================= */
-
-function calculateSubjectAttendance() {
-
-    const calculator =
-        document.getElementById("attendanceCalculator");
-
-    if (!calculator) return;
-
-    calculator.innerHTML = "";
-
-
-    const attendance =
-        getAttendanceData();
-
-
-    /*
-       Find all subjects from the timetable
-    */
-
-    const subjects = {};
-
-
-    for (const day in timetable) {
-
-        timetable[day].forEach(lecture => {
-
-            const subject =
-                lecture.subject;
-
-            if (!subjects[subject]) {
-
-                subjects[subject] = {
-                    present: 0,
-                    total: 0
-                };
-
-            }
-
-        });
-    }
-
-
-    /*
-       Go through every saved date
-       and count P/A for each lecture.
-    */
-
-    for (const dateKey in attendance) {
-
-        const dayAttendance =
-            attendance[dateKey];
-
-
-        /*
-           Get the weekday from the date
-        */
-
-        const parts =
-            dateKey.split("-");
-
-        const year =
-            Number(parts[0]);
-
-        const month =
-            Number(parts[1]) - 1;
-
-        const day =
-            Number(parts[2]);
-
-
-        const date =
-            new Date(
-                year,
-                month,
-                day
-            );
-
-
-        const weekday =
-            weekdays[date.getDay()];
-
-
-        /*
-           Skip dates with no timetable
-        */
-
-        if (!timetable[weekday]) {
-            continue;
-        }
-
-
-        /*
-           Count each lecture
-        */
-
-        timetable[weekday].forEach(
-            (lecture, index) => {
-
-                const lectureId =
-                    `lecture-${index}`;
-
-
-                const status =
-                    dayAttendance[lectureId];
-
-
-                /*
-                   Only count lectures that
-                   have actually been marked.
-                */
-
-                if (
-                    status === "P" ||
-                    status === "A"
-                ) {
-
-                    subjects[
-                        lecture.subject
-                    ].total++;
-
-
-                    if (status === "P") {
-
-                        subjects[
-                            lecture.subject
-                        ].present++;
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /*
-       Calculate overall attendance
-    */
-
-    let overallPresent = 0;
-    let overallTotal = 0;
-
-
-    for (const subject in subjects) {
-
-        overallPresent +=
-            subjects[subject].present;
-
-        overallTotal +=
-            subjects[subject].total;
-    }
-
-
-    let overallPercentage = 0;
-
-
-    if (overallTotal > 0) {
-
-        overallPercentage =
-            (overallPresent / overallTotal) * 100;
-    }
 
 
     /*
@@ -1163,6 +991,553 @@ showPage = function(pageId) {
     if (pageId === "calculatorPage") {
 
         calculateSubjectAttendance();
+    }
+
+};
+/* =========================================================
+   SMART ATTENDANCE CALCULATOR
+========================================================= */
+
+function calculateSubjectAttendance() {
+
+    const calculator =
+        document.getElementById("attendanceCalculator");
+
+    if (!calculator) return;
+
+    calculator.innerHTML = "";
+
+
+    const attendance =
+        getAttendanceData();
+
+
+    /* ==============================================
+       CREATE SUBJECT LIST FROM TIMETABLE
+    ============================================== */
+
+    const subjects = {};
+
+
+    for (const day in timetable) {
+
+        timetable[day].forEach(lecture => {
+
+            const subject =
+                lecture.subject;
+
+            if (!subjects[subject]) {
+
+                subjects[subject] = {
+                    present: 0,
+                    total: 0
+                };
+
+            }
+
+        });
+
+    }
+
+
+    /* ==============================================
+       COUNT SAVED P / A RECORDS
+    ============================================== */
+
+    for (const dateKey in attendance) {
+
+        const dayAttendance =
+            attendance[dateKey];
+
+
+        const parts =
+            dateKey.split("-");
+
+
+        const year =
+            Number(parts[0]);
+
+        const month =
+            Number(parts[1]) - 1;
+
+        const day =
+            Number(parts[2]);
+
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const weekday =
+            weekdays[date.getDay()];
+
+
+        if (!timetable[weekday]) {
+            continue;
+        }
+
+
+        timetable[weekday].forEach(
+            (lecture, index) => {
+
+                const lectureId =
+                    `lecture-${index}`;
+
+
+                const status =
+                    dayAttendance[lectureId];
+
+
+                if (
+                    status === "P" ||
+                    status === "A"
+                ) {
+
+                    const subject =
+                        lecture.subject;
+
+
+                    subjects[subject].total++;
+
+
+                    if (status === "P") {
+
+                        subjects[subject].present++;
+
+                    }
+
+                }
+
+            }
+        
+        /* =========================================================
+   SMART ATTENDANCE CALCULATOR
+========================================================= */
+
+function calculateSubjectAttendance() {
+
+    const calculator =
+        document.getElementById("attendanceCalculator");
+
+    if (!calculator) return;
+
+    calculator.innerHTML = "";
+
+
+    const attendance =
+        getAttendanceData();
+
+
+    /* ==============================================
+       CREATE SUBJECT LIST FROM TIMETABLE
+    ============================================== */
+
+    const subjects = {};
+
+
+    for (const day in timetable) {
+
+        timetable[day].forEach(lecture => {
+
+            const subject =
+                lecture.subject;
+
+            if (!subjects[subject]) {
+
+                subjects[subject] = {
+                    present: 0,
+                    total: 0
+                };
+
+            }
+
+        });
+
+    }
+
+
+    /* ==============================================
+       COUNT SAVED P / A RECORDS
+    ============================================== */
+
+    for (const dateKey in attendance) {
+
+        const dayAttendance =
+            attendance[dateKey];
+
+
+        const parts =
+            dateKey.split("-");
+
+
+        const year =
+            Number(parts[0]);
+
+        const month =
+            Number(parts[1]) - 1;
+
+        const day =
+            Number(parts[2]);
+
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const weekday =
+            weekdays[date.getDay()];
+
+
+        if (!timetable[weekday]) {
+            continue;
+        }
+
+
+        timetable[weekday].forEach(
+            (lecture, index) => {
+
+                const lectureId =
+                    `lecture-${index}`;
+
+
+                const status =
+                    dayAttendance[lectureId];
+
+
+                if (
+                    status === "P" ||
+                    status === "A"
+                ) {
+
+                    const subject =
+                        lecture.subject;
+
+
+                    subjects[subject].total++;
+
+
+                    if (status === "P") {
+
+                        subjects[subject].present++;
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==============================================
+       OVERALL ATTENDANCE
+    ============================================== */
+
+    let overallPresent = 0;
+    let overallTotal = 0;
+
+
+    for (const subject in subjects) {
+
+        overallPresent +=
+            subjects[subject].present;
+
+        overallTotal +=
+            subjects[subject].total;
+
+    }
+
+
+    let overallPercentage = 0;
+
+
+    if (overallTotal > 0) {
+
+        overallPercentage =
+            (overallPresent / overallTotal) * 100;
+
+    }
+
+
+    /* ==============================================
+       OVERALL CARD
+    ============================================== */
+
+    const overallCard =
+        document.createElement("div");
+
+    overallCard.className =
+        "overall-card";
+
+
+    overallCard.innerHTML = `
+
+        <div class="overall-title">
+            Overall Attendance
+        </div>
+
+        <div class="overall-percentage">
+            ${overallPercentage.toFixed(1)}%
+        </div>
+
+        <div class="overall-count">
+            ${overallPresent} Present
+            out of
+            ${overallTotal} marked classes
+        </div>
+
+    `;
+
+
+    calculator.appendChild(
+        overallCard
+    );
+
+
+    /* ==============================================
+       SUBJECT CARDS
+    ============================================== */
+
+    for (const subject in subjects) {
+
+        const present =
+            subjects[subject].present;
+
+        const total =
+            subjects[subject].total;
+
+
+        let percentage = 0;
+
+
+        if (total > 0) {
+
+            percentage =
+                (present / total) * 100;
+
+        }
+
+
+        /* ==========================================
+           STATUS
+        ========================================== */
+
+        let statusText;
+        let statusClass;
+
+
+        if (total === 0) {
+
+            statusText =
+                "No attendance recorded";
+
+            statusClass =
+                "status-none";
+
+        }
+
+        else if (percentage >= 80) {
+
+            statusText =
+                "🟢 Safe";
+
+            statusClass =
+                "status-safe";
+
+        }
+
+        else if (percentage >= 75) {
+
+            statusText =
+                "🟡 Above minimum";
+
+            statusClass =
+                "status-warning";
+
+        }
+
+        else {
+
+            statusText =
+                "🔴 Below 75%";
+
+            statusClass =
+                "status-danger";
+
+        }
+
+
+        /* ==========================================
+           FUTURE ATTENDANCE CALCULATIONS
+        ========================================== */
+
+        let advice = "";
+
+
+        if (total === 0) {
+
+            advice =
+                "Mark your attendance to start calculating.";
+
+        }
+
+        else if (percentage < 75) {
+
+            /*
+               Find minimum number of consecutive
+               classes that must be attended to
+               reach 75%.
+
+               (present + x) / (total + x) >= 0.75
+            */
+
+            let needed = 0;
+
+            while (
+                (present + needed) /
+                (total + needed) < 0.75
+            ) {
+
+                needed++;
+
+            }
+
+
+            advice = `
+                <div class="attendance-advice danger-advice">
+                    📈 Attend your next
+                    <strong>${needed}</strong>
+                    class${needed === 1 ? "" : "es"}
+                    to reach 75%.
+                </div>
+            `;
+
+        }
+
+        else {
+
+            /*
+               Calculate how many classes can be
+               missed while remaining at 75%.
+
+               present / (total + x) >= 0.75
+            */
+
+            let canMiss = 0;
+
+
+            while (
+                present /
+                (total + canMiss + 1) >= 0.75
+            ) {
+
+                canMiss++;
+
+            }
+
+
+            if (canMiss === 0) {
+
+                advice = `
+                    <div class="attendance-advice warning-advice">
+                        ⚠️ You cannot miss another
+                        class without going below 75%.
+                    </div>
+                `;
+
+            }
+
+            else {
+
+                advice = `
+                    <div class="attendance-advice safe-advice">
+                        🛡️ You can miss
+                        <strong>${canMiss}</strong>
+                        more class${canMiss === 1 ? "" : "es"}
+                        and stay at or above 75%.
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           CREATE SUBJECT CARD
+        ========================================== */
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "subject-card";
+
+
+        card.innerHTML = `
+
+            <div class="subject-name">
+                ${subject}
+            </div>
+
+
+            <div class="subject-count">
+                ${present} Present
+                / ${total} marked
+            </div>
+
+
+            <div class="subject-percentage">
+                ${percentage.toFixed(1)}%
+            </div>
+
+
+            <div class="
+                subject-status
+                ${statusClass}
+            ">
+                ${statusText}
+            </div>
+
+
+            ${advice}
+
+        `;
+
+
+        calculator.appendChild(card);
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE CALCULATOR WHEN OPENED
+========================================================= */
+
+const oldShowPage =
+    showPage;
+
+
+showPage = function(pageId) {
+
+    oldShowPage(pageId);
+
+
+    if (pageId === "calculatorPage") {
+
+        calculateSubjectAttendance();
+
     }
 
 };
