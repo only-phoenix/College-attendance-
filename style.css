@@ -1,9 +1,19 @@
 /* =========================================================
+   COLLEGE ATTENDANCE WEBSITE — COMPLETE STYLE.CSS
+   Theme: Dark + Light Green
+========================================================= */
+
+
+/* =========================================================
    GLOBAL
 ========================================================= */
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,6 +28,26 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
+}
+
+
+/* =========================================================
+   MAIN HEADER
+========================================================= */
+
+.container > h1 {
+    text-align: center;
+    color: #1b4332;
+    margin: 10px 0 5px;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.subtitle {
+    text-align: center;
+    color: #52796f;
+    margin: 0 0 20px;
+    font-size: 15px;
 }
 
 
@@ -63,10 +93,18 @@ body {
     background-color: #2d6a4f;
 }
 
+.navigation button:active {
+    transform: scale(0.97);
+}
+
 
 /* =========================================================
    PAGE CONTROL
 ========================================================= */
+
+.page {
+    width: 100%;
+}
 
 .hidden {
     display: none !important;
@@ -171,7 +209,7 @@ body {
 }
 
 
-/* Calendar top section */
+/* Calendar header */
 
 .calendar-header {
     display: flex;
@@ -188,7 +226,7 @@ body {
 }
 
 
-/* Previous / Next buttons */
+/* Previous / next buttons */
 
 .calendar-header button {
     width: 40px;
@@ -204,6 +242,10 @@ body {
 
 .calendar-header button:hover {
     background: #2d6a4f;
+}
+
+.calendar-header button:active {
+    transform: scale(0.95);
 }
 
 
@@ -256,7 +298,7 @@ body {
 }
 
 
-/* Empty spaces before/after dates */
+/* Empty spaces */
 
 .calendar .empty {
     cursor: default;
@@ -291,11 +333,6 @@ body {
    ATTENDANCE MARKED DATE
 ========================================================= */
 
-/*
-   A small dot will appear on dates for which
-   attendance has already been recorded.
-*/
-
 .calendar .has-attendance::after {
     content: "";
     position: absolute;
@@ -304,28 +341,6 @@ body {
     height: 5px;
     border-radius: 50%;
     background: #1b4332;
-}
-
-
-/* =========================================================
-   HOLIDAY DATE
-========================================================= */
-
-.calendar .holiday {
-    background: #eeeeee;
-    color: #777;
-}
-
-.calendar .holiday:hover {
-    background: #e2e2e2;
-}
-
-
-/* If a holiday is selected */
-
-.calendar .holiday.selected {
-    background: #1b4332;
-    color: white;
 }
 
 
@@ -343,26 +358,81 @@ body {
 
 
 /* =========================================================
-   ATTENDANCE SECTION
+   DAILY ATTENDANCE
 ========================================================= */
 
 .attendance-section {
     width: 100%;
     max-width: 700px;
-    margin: 20px auto;
+    margin: 20px auto 40px;
 }
+
+
+/* Empty state */
+
+.attendance-empty {
+    background: white;
+    padding: 35px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.empty-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.attendance-empty h3 {
+    color: #1b4332;
+    margin: 8px 0;
+}
+
+.attendance-empty p {
+    color: #777;
+    margin: 0;
+}
+
+
+/* Day heading */
+
+.attendance-day-heading {
+    text-align: center;
+    color: #1b4332;
+    margin: 25px 0 18px;
+}
+
+
+/* =========================================================
+   LECTURE CARDS
+========================================================= */
 
 .attendance-card {
     background: white;
-    padding: 20px;
     border-radius: 12px;
+    padding: 18px;
     margin-bottom: 15px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.attendance-card h3 {
-    margin-top: 0;
+.lecture-time {
+    font-size: 13px;
+    font-weight: 700;
+    color: #52796f;
+    margin-bottom: 6px;
+}
+
+.lecture-subject {
+    font-size: 18px;
+    font-weight: 800;
     color: #1b4332;
+    margin-bottom: 6px;
+}
+
+.lecture-details {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
 }
 
 
@@ -370,19 +440,302 @@ body {
    PRESENT / ABSENT BUTTONS
 ========================================================= */
 
-.attendance-buttons {
+.attendance-options {
     display: flex;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 
-.attendance-buttons button {
+.attendance-btn {
     flex: 1;
-    border: none;
     padding: 12px;
     border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+/* Present */
+
+.present-btn {
+    background: white;
+    color: #1b4332;
+    border: 2px solid #1b4332;
+}
+
+.present-btn:hover,
+.present-btn.active {
+    background: #1b4332;
+    color: white;
+}
+
+
+/* Absent */
+
+.absent-btn {
+    background: white;
+    color: #52796f;
+    border: 2px solid #52796f;
+}
+
+.absent-btn:hover,
+.absent-btn.active {
+    background: #52796f;
+    color: white;
+}
+
+
+/* =========================================================
+   DAILY SUMMARY
+========================================================= */
+
+.attendance-summary {
+    background: #e8f3ec;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+    text-align: center;
+    color: #1b4332;
+}
+
+.attendance-summary-title {
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.attendance-summary-stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   NO CLASSES
+========================================================= */
+
+.no-classes {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 15px;
+    text-align: center;
+    color: #666;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.no-classes h3 {
+    color: #1b4332;
+}
+
+
+/* =========================================================
+   HOLIDAY BUTTONS
+========================================================= */
+
+.holiday-btn,
+.remove-holiday-btn {
+    display: block;
+    margin: 15px auto;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #1b4332;
+    color: white;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.holiday-btn:hover,
+.remove-holiday-btn:hover {
+    background: #2d6a4f;
+}
+
+.holiday-btn:active,
+.remove-holiday-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   ATTENDANCE CALCULATOR
+========================================================= */
+
+.calculator-subtitle {
+    text-align: center;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+
+/* Calculator grid */
+
+.calculator-grid {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+
+/* =========================================================
+   SUBJECT CARDS
+========================================================= */
+
+.subject-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    border-left: 5px solid #1b4332;
+}
+
+
+/* Subject name */
+
+.subject-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1b4332;
+    margin-bottom: 8px;
+}
+
+
+/* Attendance numbers */
+
+.subject-count {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+/* Percentage */
+
+.subject-percentage {
+    font-size: 30px;
+    font-weight: 900;
+    color: #1b4332;
+}
+
+
+/* =========================================================
+   SUBJECT STATUS
+========================================================= */
+
+.subject-status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* Safe */
+
+.status-safe {
+    background: #d8f3dc;
+    color: #1b4332;
+}
+
+
+/* Warning */
+
+.status-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+/* Danger */
+
+.status-danger {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+/* No attendance */
+
+.status-none {
+    background: #eeeeee;
+    color: #666;
+}
+
+
+/* =========================================================
+   SMART ATTENDANCE ADVICE
+========================================================= */
+
+.attendance-advice {
+    margin-top: 15px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.safe-advice {
+    background: #e8f3ec;
+    color: #1b4332;
+}
+
+.warning-advice {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.danger-advice {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+/* =========================================================
+   OVERALL ATTENDANCE
+========================================================= */
+
+.overall-card {
+    grid-column: 1 / -1;
+
+    background: #1b4332;
+    color: white;
+
+    border-radius: 14px;
+    padding: 22px;
+
+    text-align: center;
+
+    margin-bottom: 5px;
+}
+
+.overall-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.overall-percentage {
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.overall-count {
+    margin-top: 5px;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
 
@@ -392,8 +745,21 @@ body {
 
 @media (max-width: 600px) {
 
+    /* Container */
+
     .container {
         padding: 15px;
+    }
+
+
+    /* Header */
+
+    .container > h1 {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 14px;
     }
 
 
@@ -483,188 +849,7 @@ body {
     }
 
 
-    /* Attendance */
-
-    .attendance-card {
-        padding: 15px;
-    }
-
-    .attendance-buttons {
-        flex-direction: column;
-    }
-
-/* =========================================================
-   DAILY ATTENDANCE
-========================================================= */
-
-.attendance-section {
-    width: 100%;
-    max-width: 700px;
-    margin: 20px auto 40px;
-}
-
-
-/* Empty state */
-
-.attendance-empty {
-    background: white;
-    padding: 35px 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.empty-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.attendance-empty h3 {
-    color: #1b4332;
-    margin: 8px 0;
-}
-
-.attendance-empty p {
-    color: #777;
-    margin: 0;
-}
-
-
-/* Day heading */
-
-.attendance-day-heading {
-    text-align: center;
-    color: #1b4332;
-    margin: 25px 0 18px;
-}
-
-
-/* Lecture card */
-
-.attendance-card {
-    background: white;
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-
-/* Lecture information */
-
-.lecture-time {
-    font-size: 13px;
-    font-weight: 700;
-    color: #52796f;
-    margin-bottom: 6px;
-}
-
-.lecture-subject {
-    font-size: 18px;
-    font-weight: 800;
-    color: #1b4332;
-    margin-bottom: 6px;
-}
-
-.lecture-details {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-}
-
-
-/* P / A buttons */
-
-.attendance-options {
-    display: flex;
-    gap: 10px;
-    margin-top: 16px;
-}
-
-.attendance-btn {
-    flex: 1;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-
-/* Present */
-
-.present-btn {
-    background: white;
-    color: #1b4332;
-    border: 2px solid #1b4332;
-}
-
-.present-btn:hover,
-.present-btn.active {
-    background: #1b4332;
-    color: white;
-}
-
-
-/* Absent */
-
-.absent-btn {
-    background: white;
-    color: #52796f;
-    border: 2px solid #52796f;
-}
-
-.absent-btn:hover,
-.absent-btn.active {
-    background: #52796f;
-    color: white;
-}
-
-
-/* Daily summary */
-
-.attendance-summary {
-    background: #e8f3ec;
-    border-radius: 12px;
-    padding: 16px;
-    margin-top: 20px;
-    text-align: center;
-    color: #1b4332;
-}
-
-.attendance-summary-title {
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.attendance-summary-stats {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    font-size: 14px;
-}
-
-
-/* No classes */
-
-.no-classes {
-    background: white;
-    border-radius: 12px;
-    padding: 30px 15px;
-    text-align: center;
-    color: #666;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.no-classes h3 {
-    color: #1b4332;
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
+    /* Daily attendance */
 
     .attendance-section {
         width: 100%;
@@ -678,6 +863,13 @@ body {
         font-size: 16px;
     }
 
+    .lecture-details {
+        font-size: 12px;
+    }
+
+
+    /* P / A buttons */
+
     .attendance-options {
         gap: 8px;
     }
@@ -687,158 +879,25 @@ body {
         font-size: 14px;
     }
 
+
+    /* Daily summary */
+
     .attendance-summary-stats {
         gap: 15px;
         flex-wrap: wrap;
     }
-/* =========================================================
-   ATTENDANCE CALCULATOR
-========================================================= */
-
-.calculator-subtitle {
-    text-align: center;
-    color: #666;
-    margin-top: -10px;
-    margin-bottom: 25px;
-}
 
 
-/* Subject cards */
+    /* Holiday buttons */
 
-.calculator-grid {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
+    .holiday-btn,
+    .remove-holiday-btn {
+        width: 100%;
+        font-size: 13px;
+    }
 
 
-.subject-card {
-    background: white;
-    border-radius: 14px;
-    padding: 20px;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-
-    border-left: 5px solid #1b4332;
-}
-
-
-/* Subject name */
-
-.subject-name {
-    font-size: 18px;
-    font-weight: 800;
-    color: #1b4332;
-    margin-bottom: 8px;
-}
-
-
-/* Attendance numbers */
-
-.subject-count {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-
-/* Percentage */
-
-.subject-percentage {
-    font-size: 30px;
-    font-weight: 900;
-    color: #1b4332;
-}
-
-
-/* Status */
-
-.subject-status {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 800;
-}
-
-
-/* Safe */
-
-.status-safe {
-    background: #d8f3dc;
-    color: #1b4332;
-}
-
-
-/* Warning */
-
-.status-warning {
-    background: #fff3cd;
-    color: #856404;
-}
-
-
-/* Danger */
-
-.status-danger {
-    background: #f8d7da;
-    color: #842029;
-}
-
-
-/* No attendance */
-
-.status-none {
-    background: #eeeeee;
-    color: #666;
-}
-
-
-/* Overall attendance */
-
-.overall-card {
-    grid-column: 1 / -1;
-
-    background: #1b4332;
-    color: white;
-
-    border-radius: 14px;
-    padding: 22px;
-
-    text-align: center;
-
-    margin-bottom: 5px;
-}
-
-
-.overall-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-
-.overall-percentage {
-    font-size: 34px;
-    font-weight: 900;
-}
-
-
-.overall-count {
-    margin-top: 5px;
-    font-size: 13px;
-    opacity: 0.9;
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
+    /* Calculator */
 
     .calculator-grid {
         grid-template-columns: 1fr;
@@ -853,75 +912,15 @@ body {
         font-size: 27px;
     }
 
+
+    /* Overall card */
+
     .overall-card {
         grid-column: 1;
     }
-}
-/* =========================================================
-   SMART ATTENDANCE ADVICE
-========================================================= */
 
-.attendance-advice {
-    margin-top: 15px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.safe-advice {
-    background: #e8f3ec;
-    color: #1b4332;
-}
-
-.warning-advice {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.danger-advice {
-    background: #f8d7da;
-    color: #842029;
-}
-/* =========================================================
-   HOLIDAY BUTTONS
-========================================================= */
-
-.holiday-btn,
-.remove-holiday-btn {
-    display: block;
-    margin: 15px auto;
-    padding: 11px 18px;
-    border: none;
-    border-radius: 8px;
-    background: #1b4332;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.holiday-btn:hover,
-.remove-holiday-btn:hover {
-    background: #2d6a4f;
-}
-
-
-/* Holiday indicator on calendar */
-
-.calendar .has-attendance {
-    position: relative;
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .holiday-btn,
-    .remove-holiday-btn {
-        width: 100%;
-        font-size: 13px;
+    .overall-percentage {
+        font-size: 30px;
     }
 
 }
