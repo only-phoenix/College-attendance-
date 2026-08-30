@@ -883,3 +883,45 @@ body {
     background: #f8d7da;
     color: #842029;
 }
+/* =========================================================
+   HOLIDAY BUTTONS
+========================================================= */
+
+.holiday-btn,
+.remove-holiday-btn {
+    display: block;
+    margin: 15px auto;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #1b4332;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.holiday-btn:hover,
+.remove-holiday-btn:hover {
+    background: #2d6a4f;
+}
+
+
+/* Holiday indicator on calendar */
+
+.calendar .has-attendance {
+    position: relative;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .holiday-btn,
+    .remove-holiday-btn {
+        width: 100%;
+        font-size: 13px;
+    }
+
+}
