@@ -52,11 +52,31 @@ const timetable = {
             type: "Tutorial",
             teacher: "Ms. Shreya",
             room: "F106"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         }
     ],
 
-
     Tuesday: [
+        {
+            time: "08:30 - 09:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "09:30 - 10:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
         {
             time: "10:30 - 11:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
@@ -87,8 +107,21 @@ const timetable = {
         }
     ],
 
-
     Wednesday: [
+        {
+            time: "08:30 - 09:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "09:30 - 10:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
         {
             time: "10:30 - 11:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
@@ -109,9 +142,15 @@ const timetable = {
             type: "Practical",
             teacher: "Er. Jaswant Singh Taur",
             room: "OS LAB, CSE DEPT"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         }
     ],
-
 
     Thursday: [
         {
@@ -157,7 +196,6 @@ const timetable = {
             room: "CSA1, CSA2"
         }
     ],
-
 
     Friday: [
         {
@@ -248,8 +286,7 @@ function showPage(pageId) {
             page.classList.add("hidden");
         });
 
-    const page =
-        document.getElementById(pageId);
+    const page = document.getElementById(pageId);
 
     if (page) {
         page.classList.remove("hidden");
@@ -270,9 +307,7 @@ function displayTimetable() {
     const container =
         document.getElementById("timetable");
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     container.innerHTML = "";
 
@@ -285,13 +320,11 @@ function displayTimetable() {
             "day-section";
 
         section.innerHTML = `
-
             <h3>${day}</h3>
 
             <table>
 
                 <thead>
-
                     <tr>
                         <th>S.No.</th>
                         <th>Time</th>
@@ -300,7 +333,6 @@ function displayTimetable() {
                         <th>Teacher</th>
                         <th>Room</th>
                     </tr>
-
                 </thead>
 
                 <tbody></tbody>
@@ -322,29 +354,17 @@ function displayTimetable() {
                 }
 
                 row.innerHTML = `
-
                     <td>${index + 1}</td>
 
-                    <td>
-                        ${lecture.time}
-                    </td>
+                    <td>${lecture.time}</td>
 
-                    <td>
-                        ${lecture.subject}
-                    </td>
+                    <td>${lecture.subject}</td>
 
-                    <td>
-                        ${lecture.type}
-                    </td>
+                    <td>${lecture.type}</td>
 
-                    <td>
-                        ${lecture.teacher || "—"}
-                    </td>
+                    <td>${lecture.teacher || "—"}</td>
 
-                    <td>
-                        ${lecture.room || "—"}
-                    </td>
-
+                    <td>${lecture.room || "—"}</td>
                 `;
 
                 tbody.appendChild(row);
@@ -378,9 +398,7 @@ let selectedYear = null;
 function getAttendanceData() {
 
     const saved =
-        localStorage.getItem(
-            "collegeAttendance"
-        );
+        localStorage.getItem("collegeAttendance");
 
     if (!saved) {
         return {};
@@ -388,9 +406,7 @@ function getAttendanceData() {
 
     try {
         return JSON.parse(saved);
-    }
-
-    catch (error) {
+    } catch (error) {
         return {};
     }
 }
@@ -409,11 +425,7 @@ function saveAttendanceData(data) {
    7. DATE KEY
 ========================================================= */
 
-function createDateKey(
-    year,
-    month,
-    day
-) {
+function createDateKey(year, month, day) {
 
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
@@ -440,7 +452,6 @@ function displayCalendar() {
     monthYear.textContent =
         `${monthNames[currentMonth]} ${currentYear}`;
 
-
     let firstDay =
         new Date(
             currentYear,
@@ -453,14 +464,12 @@ function displayCalendar() {
             ? 6
             : firstDay - 1;
 
-
     const daysInMonth =
         new Date(
             currentYear,
             currentMonth + 1,
             0
         ).getDate();
-
 
     for (
         let i = 0;
@@ -471,16 +480,13 @@ function displayCalendar() {
         const empty =
             document.createElement("div");
 
-        empty.className =
-            "empty";
+        empty.className = "empty";
 
         calendar.appendChild(empty);
     }
 
-
     const attendance =
         getAttendanceData();
-
 
     for (
         let day = 1;
@@ -491,16 +497,12 @@ function displayCalendar() {
         const date =
             document.createElement("div");
 
-        date.className =
-            "date";
+        date.className = "date";
 
-        date.textContent =
-            day;
-
+        date.textContent = day;
 
         const today =
             new Date();
-
 
         if (
             day === today.getDate() &&
@@ -511,7 +513,6 @@ function displayCalendar() {
             date.classList.add("today");
         }
 
-
         if (
             day === selectedDay &&
             currentMonth === selectedMonth &&
@@ -521,14 +522,12 @@ function displayCalendar() {
             date.classList.add("selected");
         }
 
-
         const dateKey =
             createDateKey(
                 currentYear,
                 currentMonth,
                 day
             );
-
 
         if (attendance[dateKey]) {
 
@@ -537,18 +536,15 @@ function displayCalendar() {
             );
         }
 
+        date.onclick = function () {
 
-        date.onclick =
-            function () {
+            selectDate(
+                day,
+                currentMonth,
+                currentYear
+            );
 
-                selectDate(
-                    day,
-                    currentMonth,
-                    currentYear
-                );
-
-            };
-
+        };
 
         calendar.appendChild(date);
     }
@@ -563,22 +559,15 @@ function changeMonth(direction) {
 
     currentMonth += direction;
 
-
     if (currentMonth < 0) {
-
         currentMonth = 11;
         currentYear--;
-
     }
-
 
     if (currentMonth > 11) {
-
         currentMonth = 0;
         currentYear++;
-
     }
-
 
     displayCalendar();
 }
@@ -588,16 +577,11 @@ function changeMonth(direction) {
    10. SELECT DATE
 ========================================================= */
 
-function selectDate(
-    day,
-    month,
-    year
-) {
+function selectDate(day, month, year) {
 
     selectedDay = day;
     selectedMonth = month;
     selectedYear = year;
-
 
     const date =
         new Date(
@@ -606,16 +590,11 @@ function selectDate(
             day
         );
 
-
     const weekday =
         weekdays[date.getDay()];
 
-
     const selectedDate =
-        document.getElementById(
-            "selectedDate"
-        );
-
+        document.getElementById("selectedDate");
 
     if (selectedDate) {
 
@@ -624,9 +603,7 @@ function selectDate(
 
     }
 
-
     displayCalendar();
-
 
     displayDailyAttendance(
         day,
@@ -650,9 +627,7 @@ function getSelectedWeekday() {
     ) {
 
         return null;
-
     }
-
 
     const date =
         new Date(
@@ -661,10 +636,7 @@ function getSelectedWeekday() {
             selectedDay
         );
 
-
-    return weekdays[
-        date.getDay()
-    ];
+    return weekdays[date.getDay()];
 }
 
 
@@ -684,14 +656,11 @@ function displayDailyAttendance(
             "dailyAttendance"
         );
 
-
     if (!container) {
         return;
     }
 
-
     container.innerHTML = "";
-
 
     const dateKey =
         createDateKey(
@@ -700,18 +669,14 @@ function displayDailyAttendance(
             day
         );
 
-
     const attendance =
         getAttendanceData();
-
 
     const dayData =
         attendance[dateKey] || {};
 
 
-    /* -----------------------------------------------------
-       HOLIDAY
-    ----------------------------------------------------- */
+    /* HOLIDAY */
 
     if (dayData.holiday === true) {
 
@@ -719,9 +684,7 @@ function displayDailyAttendance(
 
             <div class="no-classes">
 
-                <h3>
-                    🏖️ Holiday / No Class
-                </h3>
+                <h3>🏖️ Holiday / No Class</h3>
 
                 <p>
                     This date has been marked
@@ -743,9 +706,7 @@ function displayDailyAttendance(
     }
 
 
-    /* -----------------------------------------------------
-       WEEKEND / NO TIMETABLE
-    ----------------------------------------------------- */
+    /* WEEKEND / NO TIMETABLE */
 
     if (!timetable[weekday]) {
 
@@ -753,9 +714,7 @@ function displayDailyAttendance(
 
             <div class="no-classes">
 
-                <h3>
-                    📚 No Classes
-                </h3>
+                <h3>📚 No Classes</h3>
 
                 <p>
                     There are no lectures
@@ -777,9 +736,7 @@ function displayDailyAttendance(
     }
 
 
-    /* -----------------------------------------------------
-       HEADING
-    ----------------------------------------------------- */
+    /* HEADING */
 
     const heading =
         document.createElement("h2");
@@ -790,14 +747,10 @@ function displayDailyAttendance(
     heading.textContent =
         `${weekday}'s Lectures`;
 
-    container.appendChild(
-        heading
-    );
+    container.appendChild(heading);
 
 
-    /* -----------------------------------------------------
-       HOLIDAY BUTTON
-    ----------------------------------------------------- */
+    /* HOLIDAY BUTTON */
 
     const holidayButton =
         document.createElement("button");
@@ -815,32 +768,24 @@ function displayDailyAttendance(
 
         };
 
-
     container.appendChild(
         holidayButton
     );
 
 
-    /* -----------------------------------------------------
-       ATTENDANCE COUNTERS
-    ----------------------------------------------------- */
+    /* COUNTERS */
 
     let present = 0;
     let absent = 0;
-
     let lectureNumber = 0;
 
 
-    /* -----------------------------------------------------
-       CREATE CLASS / BREAK CARDS
-    ----------------------------------------------------- */
+    /* CLASSES AND BREAKS */
 
     timetable[weekday].forEach(
         (lecture) => {
 
-            /* -------------------------------------------------
-               BREAK
-            ------------------------------------------------- */
+            /* BREAK */
 
             if (lecture.type === "Break") {
 
@@ -874,36 +819,29 @@ function displayDailyAttendance(
             }
 
 
-            /* -------------------------------------------------
-               ACTUAL CLASS
-            ------------------------------------------------- */
+            /* ACTUAL CLASS */
 
             const lectureId =
                 `lecture-${lectureNumber}`;
 
             lectureNumber++;
 
-
             const currentStatus =
                 dayData[lectureId] || "";
-
 
             if (currentStatus === "P") {
                 present++;
             }
 
-
             if (currentStatus === "A") {
                 absent++;
             }
-
 
             const card =
                 document.createElement("div");
 
             card.className =
                 "attendance-card";
-
 
             card.innerHTML = `
 
@@ -944,7 +882,6 @@ function displayDailyAttendance(
                         ✓ Present
                     </button>
 
-
                     <button
                         class="
                             attendance-btn
@@ -968,31 +905,23 @@ function displayDailyAttendance(
 
             `;
 
-
-            container.appendChild(
-                card
-            );
-
+            container.appendChild(card);
         }
     );
 
 
-    /* -----------------------------------------------------
-       DAILY SUMMARY
-    ----------------------------------------------------- */
+    /* DAILY SUMMARY */
 
     const total =
         timetable[weekday].filter(
             lecture => lecture.type !== "Break"
         ).length;
 
-
     const summary =
         document.createElement("div");
 
     summary.className =
         "attendance-summary";
-
 
     summary.innerHTML = `
 
@@ -1021,10 +950,7 @@ function displayDailyAttendance(
 
     `;
 
-
-    container.appendChild(
-        summary
-    );
+    container.appendChild(summary);
 }
 
 
@@ -1041,15 +967,11 @@ function markAttendance(
     const data =
         getAttendanceData();
 
-
     if (!data[dateKey]) {
         data[dateKey] = {};
     }
 
-
-    data[dateKey].holiday =
-        false;
-
+    data[dateKey].holiday = false;
 
     if (
         data[dateKey][lectureId] === status
@@ -1057,18 +979,13 @@ function markAttendance(
 
         delete data[dateKey][lectureId];
 
-    }
+    } else {
 
-    else {
-
-        data[dateKey][lectureId] =
-            status;
+        data[dateKey][lectureId] = status;
 
     }
-
 
     saveAttendanceData(data);
-
 
     if (selectedDay !== null) {
 
@@ -1078,12 +995,9 @@ function markAttendance(
             selectedYear,
             getSelectedWeekday()
         );
-
     }
 
-
     displayCalendar();
-
 
     calculateSubjectAttendance();
 }
@@ -1098,25 +1012,20 @@ function markHoliday(dateKey) {
     const data =
         getAttendanceData();
 
-
     const confirmed =
         confirm(
             "Mark this entire day as a holiday? All attendance marked for this date will be cleared."
         );
 
-
     if (!confirmed) {
         return;
     }
-
 
     data[dateKey] = {
         holiday: true
     };
 
-
     saveAttendanceData(data);
-
 
     displayDailyAttendance(
         selectedDay,
@@ -1125,9 +1034,7 @@ function markHoliday(dateKey) {
         getSelectedWeekday()
     );
 
-
     displayCalendar();
-
 
     calculateSubjectAttendance();
 }
@@ -1142,12 +1049,9 @@ function removeHoliday(dateKey) {
     const data =
         getAttendanceData();
 
-
     delete data[dateKey];
 
-
     saveAttendanceData(data);
-
 
     displayDailyAttendance(
         selectedDay,
@@ -1156,9 +1060,7 @@ function removeHoliday(dateKey) {
         getSelectedWeekday()
     );
 
-
     displayCalendar();
-
 
     calculateSubjectAttendance();
 }
@@ -1175,26 +1077,19 @@ function calculateSubjectAttendance() {
             "attendanceCalculator"
         );
 
-
     if (!calculator) {
         return;
     }
 
-
     calculator.innerHTML = "";
-
 
     const attendance =
         getAttendanceData();
 
-
-    /* -----------------------------------------------------
-       CREATE SUBJECT LIST
-       BREAKS ARE IGNORED
-    ----------------------------------------------------- */
-
     const subjects = {};
 
+
+    /* CREATE SUBJECT LIST */
 
     for (const day in timetable) {
 
@@ -1205,62 +1100,45 @@ function calculateSubjectAttendance() {
                     return;
                 }
 
-
                 const subject =
                     lecture.subject;
-
 
                 if (!subjects[subject]) {
 
                     subjects[subject] = {
-
                         present: 0,
                         total: 0
-
                     };
-
                 }
-
             }
         );
-
     }
 
 
-    /* -----------------------------------------------------
-       READ SAVED ATTENDANCE
-    ----------------------------------------------------- */
+    /* READ SAVED ATTENDANCE */
 
     for (const dateKey in attendance) {
 
         const dayAttendance =
             attendance[dateKey];
 
-
         if (
             dayAttendance.holiday === true
         ) {
-
             continue;
-
         }
-
 
         const parts =
             dateKey.split("-");
 
-
         const year =
             Number(parts[0]);
-
 
         const month =
             Number(parts[1]) - 1;
 
-
         const day =
             Number(parts[2]);
-
 
         const date =
             new Date(
@@ -1269,24 +1147,14 @@ function calculateSubjectAttendance() {
                 day
             );
 
-
         const weekday =
-            weekdays[
-                date.getDay()
-            ];
-
+            weekdays[date.getDay()];
 
         if (!timetable[weekday]) {
             continue;
         }
 
-
-        /* -------------------------------------------------
-           ONLY ACTUAL CLASSES
-        ------------------------------------------------- */
-
         let lectureNumber = 0;
-
 
         timetable[weekday].forEach(
             lecture => {
@@ -1295,18 +1163,13 @@ function calculateSubjectAttendance() {
                     return;
                 }
 
-
                 const lectureId =
                     `lecture-${lectureNumber}`;
 
                 lectureNumber++;
 
-
                 const status =
-                    dayAttendance[
-                        lectureId
-                    ];
-
+                    dayAttendance[lectureId];
 
                 if (
                     status === "P" ||
@@ -1316,48 +1179,34 @@ function calculateSubjectAttendance() {
                     const subject =
                         lecture.subject;
 
-
                     subjects[subject].total++;
-
 
                     if (status === "P") {
 
-                        subjects[
-                            subject
-                        ].present++;
+                        subjects[subject].present++;
 
                     }
-
                 }
-
             }
         );
-
     }
 
 
-    /* =====================================================
-       OVERALL ATTENDANCE
-    ===================================================== */
+    /* OVERALL ATTENDANCE */
 
     let overallPresent = 0;
     let overallTotal = 0;
-
 
     for (const subject in subjects) {
 
         overallPresent +=
             subjects[subject].present;
 
-
         overallTotal +=
             subjects[subject].total;
-
     }
 
-
     let overallPercentage = 0;
-
 
     if (overallTotal > 0) {
 
@@ -1366,20 +1215,16 @@ function calculateSubjectAttendance() {
                 overallPresent /
                 overallTotal
             ) * 100;
-
     }
 
 
-    /* -----------------------------------------------------
-       OVERALL CARD
-    ----------------------------------------------------- */
+    /* OVERALL CARD */
 
     const overallCard =
         document.createElement("div");
 
     overallCard.className =
         "overall-card";
-
 
     overallCard.innerHTML = `
 
@@ -1400,28 +1245,22 @@ function calculateSubjectAttendance() {
 
     `;
 
-
     calculator.appendChild(
         overallCard
     );
 
 
-    /* =====================================================
-       SUBJECT CARDS
-    ===================================================== */
+    /* SUBJECT CARDS */
 
     for (const subject in subjects) {
 
         const present =
             subjects[subject].present;
 
-
         const total =
             subjects[subject].total;
 
-
         let percentage = 0;
-
 
         if (total > 0) {
 
@@ -1430,17 +1269,13 @@ function calculateSubjectAttendance() {
                     present /
                     total
                 ) * 100;
-
         }
 
 
-        /* -------------------------------------------------
-           STATUS
-        ------------------------------------------------- */
+        /* STATUS */
 
         let statusText;
         let statusClass;
-
 
         if (total === 0) {
 
@@ -1450,9 +1285,7 @@ function calculateSubjectAttendance() {
             statusClass =
                 "status-none";
 
-        }
-
-        else if (percentage >= 80) {
+        } else if (percentage >= 80) {
 
             statusText =
                 "🟢 Safe";
@@ -1460,9 +1293,7 @@ function calculateSubjectAttendance() {
             statusClass =
                 "status-safe";
 
-        }
-
-        else if (percentage >= 75) {
+        } else if (percentage >= 75) {
 
             statusText =
                 "🟡 Above minimum";
@@ -1470,25 +1301,19 @@ function calculateSubjectAttendance() {
             statusClass =
                 "status-warning";
 
-        }
-
-        else {
+        } else {
 
             statusText =
                 "🔴 Below 75%";
 
             statusClass =
                 "status-danger";
-
         }
 
 
-        /* -------------------------------------------------
-           SMART ADVICE
-        ------------------------------------------------- */
+        /* ADVICE */
 
         let advice = "";
-
 
         if (total === 0) {
 
@@ -1506,13 +1331,9 @@ function calculateSubjectAttendance() {
 
             `;
 
-        }
-
-
-        else if (percentage < 75) {
+        } else if (percentage < 75) {
 
             let needed = 0;
-
 
             while (
                 (
@@ -1523,13 +1344,10 @@ function calculateSubjectAttendance() {
 
                 needed++;
 
-
                 if (needed > 1000) {
                     break;
                 }
-
             }
-
 
             advice = `
 
@@ -1539,12 +1357,8 @@ function calculateSubjectAttendance() {
                 ">
 
                     📈 Attend your next
-                    <strong>
-                        ${needed}
-                    </strong>
-                    class${needed === 1
-                        ? ""
-                        : "es"}
+                    <strong>${needed}</strong>
+                    class${needed === 1 ? "" : "es"}
                     to reach
                     <strong>75%</strong>.
 
@@ -1552,13 +1366,9 @@ function calculateSubjectAttendance() {
 
             `;
 
-        }
-
-
-        else {
+        } else {
 
             let canMiss = 0;
-
 
             while (
                 (
@@ -1569,13 +1379,10 @@ function calculateSubjectAttendance() {
 
                 canMiss++;
 
-
                 if (canMiss > 1000) {
                     break;
                 }
-
             }
-
 
             if (canMiss === 0) {
 
@@ -1594,9 +1401,7 @@ function calculateSubjectAttendance() {
 
                 `;
 
-            }
-
-            else {
+            } else {
 
                 advice = `
 
@@ -1606,34 +1411,25 @@ function calculateSubjectAttendance() {
                     ">
 
                         🛡️ You can miss
-                        <strong>
-                            ${canMiss}
-                        </strong>
-                        more class${canMiss === 1
-                            ? ""
-                            : "es"}
+                        <strong>${canMiss}</strong>
+                        more class${canMiss === 1 ? "" : "es"}
                         and stay at or
                         above 75%.
 
                     </div>
 
                 `;
-
             }
-
         }
 
 
-        /* -------------------------------------------------
-           SUBJECT CARD
-        ------------------------------------------------- */
+        /* SUBJECT CARD */
 
         const card =
             document.createElement("div");
 
         card.className =
             "subject-card";
-
 
         card.innerHTML = `
 
@@ -1663,13 +1459,8 @@ function calculateSubjectAttendance() {
 
         `;
 
-
-        calculator.appendChild(
-            card
-        );
-
+        calculator.appendChild(card);
     }
-
 }
 
 
