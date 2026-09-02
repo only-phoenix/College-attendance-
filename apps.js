@@ -7,181 +7,264 @@
 /* =========================================================
    1. TIMETABLE
 ========================================================= */
-
-const timetable = {
-
+            const timetable = {
     Monday: [
         {
-            start: "08:30",
-            end: "09:30",
-            subject: "Math II",
+            time: "08:30 - 09:30",
+            subject: "MATH II",
             type: "Lecture",
-            teacher: "Shreya Gupta",
+            teacher: "Ms. Shreya",
             room: "F113"
         },
         {
-            start: "09:30",
-            end: "10:30",
-            subject: "Professional English Communication",
+            time: "09:30 - 10:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
             type: "Lecture",
-            teacher: "Manjot Kaur",
+            teacher: "Ms. Manjot Kaur",
             room: "F113"
         },
         {
-            start: "10:30",
-            end: "11:30",
-            subject: "Basic Electrical and Electronics Engineering",
+            time: "10:30 - 11:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Lecture",
-            teacher: "Harminder Kaur Aulakh (EC)",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
             room: "F113"
         },
         {
-            start: "11:30",
-            end: "12:30",
-            subject: "Chemistry",
+            time: "11:30 - 12:30",
+            subject: "CHEMISTRY",
             type: "Lecture",
-            teacher: "Mandeep Kaur",
+            teacher: "Ms. Mandeep Kaur",
             room: "F113"
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "13:30 - 14:30",
+            subject: "MATH II",
+            type: "Tutorial",
+            teacher: "Ms. Shreya",
+            room: "F106"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         }
     ],
 
     Tuesday: [
         {
-            start: "09:30",
-            end: "10:30",
-            subject: "Math II",
-            type: "Lecture",
-            teacher: "Shreya Gupta",
-            room: "F102 (Automobile Block)"
+            time: "08:30 - 09:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         },
         {
-            start: "10:30",
-            end: "11:30",
-            subject: "Basic Electrical and Electronics Engineering",
-            type: "Lecture",
-            teacher: "Harminder Kaur Aulakh (EC)",
-            room: "F102 (Automobile Block)"
+            time: "09:30 - 10:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         },
         {
-            start: "12:30",
-            end: "13:30",
-            subject: "Basic Electrical and Electronics Engineering",
+            time: "10:30 - 11:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
+            type: "Lecture",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
+            room: "G6"
+        },
+        {
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Tutorial",
-            teacher: "Harminder Kaur Aulakh (EC)",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
             room: "F106"
         },
         {
-            start: "13:30",
-            end: "14:30",
-            subject: "Basic Electrical and Electronics Engineering",
+            time: "13:30 - 14:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Practical",
-            teacher: "Kamalpreet Kaur (EC)",
-            room: "BEE Lab 2"
+            teacher: "Er. Kamalpreet Kaur (EC)",
+            room: "PE LAB (BEE LAB 2)"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         }
     ],
 
     Wednesday: [
         {
-            start: "09:30",
-            end: "10:30",
-            subject: "Chemistry",
+            time: "08:30 - 09:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "09:30 - 10:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "10:30 - 11:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Lecture",
-            teacher: "Mandeep Kaur",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
             room: "F107"
         },
         {
-            start: "10:30",
-            end: "11:30",
-            subject: "Basic Electrical and Electronics Engineering",
-            type: "Lecture",
-            teacher: "Harminder Kaur Aulakh (EC)",
-            room: "F107"
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         },
         {
-            start: "12:30",
-            end: "13:30",
-            subject: "Programming for Problem Solving",
+            time: "12:30 - 13:30",
+            subject: "PROGRAMMING FOR PROBLEM SOLVING",
             type: "Practical",
             teacher: "Er. Jaswant Singh Taur",
-            room: "SL-I Lab"
+            room: "OS LAB, CSE DEPT"
+        },
+        {
+            time: "13:30 - 14:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
         }
     ],
 
     Thursday: [
         {
-            start: "08:30",
-            end: "09:30",
-            subject: "Professional English Communication",
+            time: "08:30 - 09:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
             type: "Lecture",
-            teacher: "Manjot Kaur",
+            teacher: "Ms. Manjot Kaur",
             room: "S205"
         },
         {
-            start: "09:30",
-            end: "10:30",
-            subject: "Math II",
+            time: "09:30 - 10:30",
+            subject: "MATH II",
             type: "Lecture",
-            teacher: "Shreya Gupta",
+            teacher: "Ms. Shreya",
             room: "S205"
         },
         {
-            start: "10:30",
-            end: "11:30",
-            subject: "Chemistry",
+            time: "10:30 - 11:30",
+            subject: "CHEMISTRY",
             type: "Lecture",
-            teacher: "Mandeep Kaur",
+            teacher: "Ms. Mandeep Kaur",
             room: "S205"
         },
         {
-            start: "12:30",
-            end: "13:30",
-            subject: "Chemistry",
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "CHEMISTRY",
             type: "Practical",
             teacher: "Karan Bhalla",
-            room: "Chem Lab 1"
+            room: "CHEM LAB 1"
         },
         {
-            start: "14:30",
-            end: "15:30",
-            subject: "Mentoring Class & Professional Development",
-            type: "Practical",
-            teacher: "Nisha",
-            room: "W/S Seminar Hall"
+            time: "13:30 - 14:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "MENTORING CLASS & PROFESSIONAL DEVELOPMENT",
+            type: "Class",
+            teacher: "Er. Goldendeep Kaur, Er. Kuljit Kaur",
+            room: "CSA1, CSA2"
         }
     ],
 
     Friday: [
         {
-            start: "09:30",
-            end: "10:30",
-            subject: "Professional English Communication",
+            time: "08:30 - 09:30",
+            subject: "MATH II",
             type: "Lecture",
-            teacher: "Manjot Kaur",
+            teacher: "Ms. Shreya",
             room: "F108"
         },
         {
-            start: "10:30",
-            end: "12:30",
-            subject: "Programming for Problem Solving",
-            type: "Practical",
-            teacher: "Er. Jaswant Singh Taur",
-            room: "R Lab, CSE Dept"
+            time: "09:30 - 10:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
+            type: "Lecture",
+            teacher: "Ms. Manjot Kaur",
+            room: "F108"
         },
         {
-            start: "13:30",
-            end: "14:30",
-            subject: "Math II",
-            type: "Tutorial",
-            teacher: "Shreya Gupta",
+            time: "10:30 - 11:30",
+            subject: "PROGRAMMING FOR PROBLEM SOLVING",
+            type: "Practical",
+            teacher: "Er. Jaswant Singh Taur",
+            room: "R LAB, CSE DEPT"
+        },
+        {
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "13:30 - 14:30",
+            subject: "CHEMISTRY",
+            type: "Lecture",
+            teacher: "Ms. Mandeep Kaur",
             room: "F106"
         },
         {
-            start: "14:30",
-            end: "15:30",
-            subject: "Professional English Communication",
+            time: "14:30 - 15:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
             type: "Practical",
-            teacher: "Nisha",
-            room: "W/S Seminar Hall"
+            teacher: "Ms. Nisha",
+            room: "W/S SEMINAR HALL"
         }
     ]
 };
