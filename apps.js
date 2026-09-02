@@ -1,4 +1,4 @@
-/* =========================================================
+ /* =========================================================
    COLLEGE ATTENDANCE WEBSITE
    COMPLETE APP.JS
 ========================================================= */
@@ -7,7 +7,9 @@
 /* =========================================================
    1. TIMETABLE
 ========================================================= */
-            const timetable = {
+
+const timetable = {
+
     Monday: [
         {
             time: "08:30 - 09:30",
@@ -59,6 +61,7 @@
             room: ""
         }
     ],
+
 
     Tuesday: [
         {
@@ -112,6 +115,7 @@
         }
     ],
 
+
     Wednesday: [
         {
             time: "08:30 - 09:30",
@@ -164,6 +168,7 @@
         }
     ],
 
+
     Thursday: [
         {
             time: "08:30 - 09:30",
@@ -215,6 +220,7 @@
             room: "CSA1, CSA2"
         }
     ],
+
 
     Friday: [
         {
@@ -319,10 +325,6 @@ function showPage(pageId) {
         page.classList.remove("hidden");
     }
 
-    /*
-       Refresh calculator whenever it is opened.
-    */
-
     if (pageId === "calculatorPage") {
         calculateSubjectAttendance();
     }
@@ -357,7 +359,6 @@ function displayTimetable() {
             <table>
 
                 <thead>
-
                     <tr>
                         <th>S.No.</th>
                         <th>Time</th>
@@ -366,7 +367,6 @@ function displayTimetable() {
                         <th>Teacher</th>
                         <th>Room</th>
                     </tr>
-
                 </thead>
 
                 <tbody></tbody>
@@ -377,19 +377,25 @@ function displayTimetable() {
         const tbody =
             section.querySelector("tbody");
 
+
         timetable[day].forEach(
             (lecture, index) => {
 
                 const row =
                     document.createElement("tr");
 
+
+                if (lecture.type === "Break") {
+                    row.className = "break-row";
+                }
+
+
                 row.innerHTML = `
 
                     <td>${index + 1}</td>
 
                     <td>
-                        ${lecture.start} -
-                        ${lecture.end}
+                        ${lecture.time}
                     </td>
 
                     <td>
@@ -401,12 +407,13 @@ function displayTimetable() {
                     </td>
 
                     <td>
-                        ${lecture.teacher}
+                        ${lecture.teacher || "—"}
                     </td>
 
                     <td>
-                        ${lecture.room}
+                        ${lecture.room || "—"}
                     </td>
+
                 `;
 
                 tbody.appendChild(row);
@@ -449,13 +456,11 @@ function getAttendanceData() {
     }
 
     try {
-
         return JSON.parse(saved);
+    }
 
-    } catch (error) {
-
+    catch (error) {
         return {};
-
     }
 }
 
@@ -505,24 +510,13 @@ function displayCalendar() {
         `${monthNames[currentMonth]} ${currentYear}`;
 
 
-    /*
-       Find first day of month.
-
-       JavaScript:
-       Sunday = 0
-       Monday = 1
-       ...
-
-       Our calendar:
-       Monday = first column
-    */
-
     let firstDay =
         new Date(
             currentYear,
             currentMonth,
             1
         ).getDay();
+
 
     firstDay =
         firstDay === 0
@@ -537,10 +531,6 @@ function displayCalendar() {
             0
         ).getDate();
 
-
-    /*
-       Empty spaces
-    */
 
     for (
         let i = 0;
@@ -557,10 +547,6 @@ function displayCalendar() {
         calendar.appendChild(empty);
     }
 
-
-    /*
-       Dates
-    */
 
     const attendance =
         getAttendanceData();
@@ -582,10 +568,6 @@ function displayCalendar() {
             day;
 
 
-        /*
-           Today's date
-        */
-
         const today =
             new Date();
 
@@ -596,16 +578,9 @@ function displayCalendar() {
             currentYear === today.getFullYear()
         ) {
 
-            date.classList.add(
-                "today"
-            );
-
+            date.classList.add("today");
         }
 
-
-        /*
-           Selected date
-        */
 
         if (
             day === selectedDay &&
@@ -613,17 +588,9 @@ function displayCalendar() {
             currentYear === selectedYear
         ) {
 
-            date.classList.add(
-                "selected"
-            );
-
+            date.classList.add("selected");
         }
 
-
-        /*
-           Show that attendance
-           has been recorded.
-        */
 
         const dateKey =
             createDateKey(
@@ -633,20 +600,13 @@ function displayCalendar() {
             );
 
 
-        if (
-            attendance[dateKey]
-        ) {
+        if (attendance[dateKey]) {
 
             date.classList.add(
                 "has-attendance"
             );
-
         }
 
-
-        /*
-           Click date
-        */
 
         date.onclick =
             function () {
@@ -819,13 +779,11 @@ function displayDailyAttendance(
         attendance[dateKey] || {};
 
 
-    /*
+    /* -----------------------------------------------------
        HOLIDAY
-    */
+    ----------------------------------------------------- */
 
-    if (
-        dayData.holiday === true
-    ) {
+    if (dayData.holiday === true) {
 
         container.innerHTML = `
 
@@ -855,9 +813,9 @@ function displayDailyAttendance(
     }
 
 
-    /*
+    /* -----------------------------------------------------
        WEEKEND / NO TIMETABLE
-    */
+    ----------------------------------------------------- */
 
     if (!timetable[weekday]) {
 
@@ -889,9 +847,9 @@ function displayDailyAttendance(
     }
 
 
-    /*
-       Heading
-    */
+    /* -----------------------------------------------------
+       HEADING
+    ----------------------------------------------------- */
 
     const heading =
         document.createElement("h2");
@@ -907,9 +865,9 @@ function displayDailyAttendance(
     );
 
 
-    /*
-       Holiday button
-    */
+    /* -----------------------------------------------------
+       HOLIDAY BUTTON
+    ----------------------------------------------------- */
 
     const holidayButton =
         document.createElement("button");
@@ -933,44 +891,81 @@ function displayDailyAttendance(
     );
 
 
-    /*
-       Current attendance counts
-    */
+    /* -----------------------------------------------------
+       ATTENDANCE COUNTERS
+    ----------------------------------------------------- */
 
     let present = 0;
     let absent = 0;
 
+    let lectureNumber = 0;
 
-    /*
-       Create lecture cards
-    */
+
+    /* -----------------------------------------------------
+       CREATE CLASS / BREAK CARDS
+    ----------------------------------------------------- */
 
     timetable[weekday].forEach(
         (lecture, index) => {
 
+
+            /* -------------------------------------------------
+               BREAK
+            ------------------------------------------------- */
+
+            if (lecture.type === "Break") {
+
+                const breakCard =
+                    document.createElement("div");
+
+                breakCard.className =
+                    "attendance-card break-card";
+
+                breakCard.innerHTML = `
+
+                    <div class="lecture-time">
+                        ${lecture.time}
+                    </div>
+
+                    <div class="lecture-subject">
+                        ☕ ${lecture.subject}
+                    </div>
+
+                    <div class="lecture-details">
+                        Free Period — No Attendance
+                    </div>
+
+                `;
+
+                container.appendChild(
+                    breakCard
+                );
+
+                return;
+            }
+
+
+            /* -------------------------------------------------
+               ACTUAL CLASS
+            ------------------------------------------------- */
+
             const lectureId =
-                `lecture-${index}`;
+                `lecture-${lectureNumber}`;
+
+            lectureNumber++;
 
 
             const currentStatus =
                 dayData[lectureId] || "";
 
 
-            if (
-                currentStatus === "P"
-            ) {
-
+            if (currentStatus === "P") {
                 present++;
-
             }
 
 
-            if (
-                currentStatus === "A"
-            ) {
-
+            if (currentStatus === "A") {
                 absent++;
-
             }
 
 
@@ -984,16 +979,12 @@ function displayDailyAttendance(
             card.innerHTML = `
 
                 <div class="lecture-time">
-                    ${lecture.start}
-                    -
-                    ${lecture.end}
+                    ${lecture.time}
                 </div>
-
 
                 <div class="lecture-subject">
                     ${lecture.subject}
                 </div>
-
 
                 <div class="lecture-details">
                     ${lecture.type}
@@ -1002,7 +993,6 @@ function displayDailyAttendance(
                     •
                     ${lecture.room}
                 </div>
-
 
                 <div class="attendance-options">
 
@@ -1058,12 +1048,14 @@ function displayDailyAttendance(
     );
 
 
-    /*
-       Daily summary
-    */
+    /* -----------------------------------------------------
+       DAILY SUMMARY
+    ----------------------------------------------------- */
 
     const total =
-        timetable[weekday].length;
+        timetable[weekday].filter(
+            lecture => lecture.type !== "Break"
+        ).length;
 
 
     const summary =
@@ -1121,26 +1113,14 @@ function markAttendance(
         getAttendanceData();
 
 
-    /*
-       If this date was previously
-       a holiday, remove holiday status.
-    */
-
     if (!data[dateKey]) {
-
         data[dateKey] = {};
-
     }
 
 
     data[dateKey].holiday =
         false;
 
-
-    /*
-       Clicking the same button again
-       removes the selection.
-    */
 
     if (
         data[dateKey][lectureId] === status
@@ -1161,13 +1141,7 @@ function markAttendance(
     saveAttendanceData(data);
 
 
-    /*
-       Refresh current date
-    */
-
-    if (
-        selectedDay !== null
-    ) {
+    if (selectedDay !== null) {
 
         displayDailyAttendance(
             selectedDay,
@@ -1182,11 +1156,6 @@ function markAttendance(
     displayCalendar();
 
 
-    /*
-       If calculator page is open,
-       refresh it too.
-    */
-
     calculateSubjectAttendance();
 }
 
@@ -1200,10 +1169,6 @@ function markHoliday(dateKey) {
     const data =
         getAttendanceData();
 
-
-    /*
-       Confirm before marking.
-    */
 
     const confirmed =
         confirm(
@@ -1223,10 +1188,6 @@ function markHoliday(dateKey) {
 
     saveAttendanceData(data);
 
-
-    /*
-       Refresh
-    */
 
     displayDailyAttendance(
         selectedDay,
@@ -1275,7 +1236,7 @@ function removeHoliday(dateKey) {
 
 
 /* =========================================================
-   16. SUBJECT-WISE CALCULATOR
+   16. SUBJECT-WISE ATTENDANCE CALCULATOR
 ========================================================= */
 
 function calculateSubjectAttendance() {
@@ -1298,33 +1259,33 @@ function calculateSubjectAttendance() {
         getAttendanceData();
 
 
-    /*
-       Create every subject
-       from timetable.
-    */
+    /* -----------------------------------------------------
+       CREATE SUBJECT LIST
+       BREAKS ARE IGNORED
+    ----------------------------------------------------- */
 
     const subjects = {};
 
 
-    for (
-        const day in timetable
-    ) {
+    for (const day in timetable) {
 
         timetable[day].forEach(
             lecture => {
+
+                if (lecture.type === "Break") {
+                    return;
+                }
+
 
                 const subject =
                     lecture.subject;
 
 
-                if (
-                    !subjects[subject]
-                ) {
+                if (!subjects[subject]) {
 
                     subjects[subject] = {
 
                         present: 0,
-
                         total: 0
 
                     };
@@ -1337,21 +1298,15 @@ function calculateSubjectAttendance() {
     }
 
 
-    /*
-       Read saved attendance.
-    */
+    /* -----------------------------------------------------
+       READ SAVED ATTENDANCE
+    ----------------------------------------------------- */
 
-    for (
-        const dateKey in attendance
-    ) {
+    for (const dateKey in attendance) {
 
         const dayAttendance =
             attendance[dateKey];
 
-
-        /*
-           Ignore holidays.
-        */
 
         if (
             dayAttendance.holiday === true
@@ -1361,10 +1316,6 @@ function calculateSubjectAttendance() {
 
         }
 
-
-        /*
-           Get weekday.
-        */
 
         const parts =
             dateKey.split("-");
@@ -1396,24 +1347,30 @@ function calculateSubjectAttendance() {
             ];
 
 
-        if (
-            !timetable[weekday]
-        ) {
-
+        if (!timetable[weekday]) {
             continue;
-
         }
 
 
-        /*
-           Count P/A.
-        */
+        /* -------------------------------------------------
+           ONLY ACTUAL CLASSES
+        ------------------------------------------------- */
+
+        let lectureNumber = 0;
+
 
         timetable[weekday].forEach(
-            (lecture, index) => {
+            lecture => {
+
+                if (lecture.type === "Break") {
+                    return;
+                }
+
 
                 const lectureId =
-                    `lecture-${index}`;
+                    `lecture-${lectureNumber}`;
+
+                lectureNumber++;
 
 
                 const status =
@@ -1431,14 +1388,10 @@ function calculateSubjectAttendance() {
                         lecture.subject;
 
 
-                    subjects[
-                        subject
-                    ].total++;
+                    subjects[subject].total++;
 
 
-                    if (
-                        status === "P"
-                    ) {
+                    if (status === "P") {
 
                         subjects[
                             subject
@@ -1454,18 +1407,15 @@ function calculateSubjectAttendance() {
     }
 
 
-    /*
-       Overall attendance
-    */
+    /* =====================================================
+       OVERALL ATTENDANCE
+    ===================================================== */
 
     let overallPresent = 0;
-
     let overallTotal = 0;
 
 
-    for (
-        const subject in subjects
-    ) {
+    for (const subject in subjects) {
 
         overallPresent +=
             subjects[subject].present;
@@ -1480,9 +1430,7 @@ function calculateSubjectAttendance() {
     let overallPercentage = 0;
 
 
-    if (
-        overallTotal > 0
-    ) {
+    if (overallTotal > 0) {
 
         overallPercentage =
             (
@@ -1493,9 +1441,9 @@ function calculateSubjectAttendance() {
     }
 
 
-    /*
-       Overall card
-    */
+    /* -----------------------------------------------------
+       OVERALL CARD
+    ----------------------------------------------------- */
 
     const overallCard =
         document.createElement("div");
@@ -1529,13 +1477,11 @@ function calculateSubjectAttendance() {
     );
 
 
-    /*
-       Subject cards
-    */
+    /* =====================================================
+       SUBJECT CARDS
+    ===================================================== */
 
-    for (
-        const subject in subjects
-    ) {
+    for (const subject in subjects) {
 
         const present =
             subjects[subject].present;
@@ -1548,9 +1494,7 @@ function calculateSubjectAttendance() {
         let percentage = 0;
 
 
-        if (
-            total > 0
-        ) {
+        if (total > 0) {
 
             percentage =
                 (
@@ -1561,18 +1505,15 @@ function calculateSubjectAttendance() {
         }
 
 
-        /*
-           Status
-        */
+        /* -------------------------------------------------
+           STATUS
+        ------------------------------------------------- */
 
         let statusText;
-
         let statusClass;
 
 
-        if (
-            total === 0
-        ) {
+        if (total === 0) {
 
             statusText =
                 "No attendance recorded";
@@ -1582,9 +1523,7 @@ function calculateSubjectAttendance() {
 
         }
 
-        else if (
-            percentage >= 80
-        ) {
+        else if (percentage >= 80) {
 
             statusText =
                 "🟢 Safe";
@@ -1594,9 +1533,7 @@ function calculateSubjectAttendance() {
 
         }
 
-        else if (
-            percentage >= 75
-        ) {
+        else if (percentage >= 75) {
 
             statusText =
                 "🟡 Above minimum";
@@ -1617,16 +1554,14 @@ function calculateSubjectAttendance() {
         }
 
 
-        /*
-           Smart advice
-        */
+        /* -------------------------------------------------
+           SMART ADVICE
+        ------------------------------------------------- */
 
         let advice = "";
 
 
-        if (
-            total === 0
-        ) {
+        if (total === 0) {
 
             advice = `
 
@@ -1645,14 +1580,7 @@ function calculateSubjectAttendance() {
         }
 
 
-        else if (
-            percentage < 75
-        ) {
-
-            /*
-               Number of classes that
-               must be attended to reach 75%.
-            */
+        else if (percentage < 75) {
 
             let needed = 0;
 
@@ -1667,16 +1595,8 @@ function calculateSubjectAttendance() {
                 needed++;
 
 
-                /*
-                   Safety limit.
-                */
-
-                if (
-                    needed > 1000
-                ) {
-
+                if (needed > 1000) {
                     break;
-
                 }
 
             }
@@ -1708,11 +1628,6 @@ function calculateSubjectAttendance() {
 
         else {
 
-            /*
-               Number of classes that can
-               be missed while staying >=75%.
-            */
-
             let canMiss = 0;
 
 
@@ -1726,24 +1641,14 @@ function calculateSubjectAttendance() {
                 canMiss++;
 
 
-                /*
-                   Safety limit.
-                */
-
-                if (
-                    canMiss > 1000
-                ) {
-
+                if (canMiss > 1000) {
                     break;
-
                 }
 
             }
 
 
-            if (
-                canMiss === 0
-            ) {
+            if (canMiss === 0) {
 
                 advice = `
 
@@ -1790,9 +1695,9 @@ function calculateSubjectAttendance() {
         }
 
 
-        /*
-           Subject card
-        */
+        /* -------------------------------------------------
+           SUBJECT CARD
+        ------------------------------------------------- */
 
         const card =
             document.createElement("div");
@@ -1807,7 +1712,6 @@ function calculateSubjectAttendance() {
                 ${subject}
             </div>
 
-
             <div class="subject-count">
                 ${present}
                 Present /
@@ -1815,11 +1719,9 @@ function calculateSubjectAttendance() {
                 marked
             </div>
 
-
             <div class="subject-percentage">
                 ${percentage.toFixed(1)}%
             </div>
-
 
             <div class="
                 subject-status
@@ -1827,7 +1729,6 @@ function calculateSubjectAttendance() {
             ">
                 ${statusText}
             </div>
-
 
             ${advice}
 
