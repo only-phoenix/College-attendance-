@@ -13,7 +13,7 @@ const timetable = {
     Monday: [
         {
             time: "08:30 - 09:30",
-            subject: "MATH II",
+            subject: "MATH 1",
             type: "Lecture",
             teacher: "Ms. Shreya",
             room: "F113"
@@ -48,37 +48,18 @@ const timetable = {
         },
         {
             time: "13:30 - 14:30",
-            subject: "MATH II",
+            subject: "MATH 1",
             type: "Tutorial",
             teacher: "Ms. Shreya",
             room: "F106"
         },
         {
-            time: "14:30 - 15:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        }
-    ],
+          
 
 
     Tuesday: [
         {
-            time: "08:30 - 09:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
-            time: "09:30 - 10:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
+            
             time: "10:30 - 11:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Lecture",
@@ -100,38 +81,19 @@ const timetable = {
             room: "F106"
         },
         {
-            time: "13:30 - 14:30",
+            time: "13:30 - 15:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Practical",
             teacher: "Er. Kamalpreet Kaur (EC)",
             room: "PE LAB (BEE LAB 2)"
         },
         {
-            time: "14:30 - 15:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        }
-    ],
+            
 
-
+],
     Wednesday: [
         {
-            time: "08:30 - 09:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
-            time: "09:30 - 10:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
+            
             time: "10:30 - 11:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Lecture",
@@ -146,26 +108,15 @@ const timetable = {
             room: ""
         },
         {
-            time: "12:30 - 13:30",
+            time: "12:30 - 14:30",
             subject: "PROGRAMMING FOR PROBLEM SOLVING",
             type: "Practical",
             teacher: "Er. Jaswant Singh Taur",
             room: "OS LAB, CSE DEPT"
-        },
+        
         {
-            time: "13:30 - 14:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
-            time: "14:30 - 15:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        }
+            
+      
     ],
 
 
@@ -179,7 +130,7 @@ const timetable = {
         },
         {
             time: "09:30 - 10:30",
-            subject: "MATH II",
+            subject: "MATH 1",
             type: "Lecture",
             teacher: "Ms. Shreya",
             room: "S205"
@@ -199,20 +150,14 @@ const timetable = {
             room: ""
         },
         {
-            time: "12:30 - 13:30",
+            time: "12:30 - 14:30",
             subject: "CHEMISTRY",
             type: "Practical",
             teacher: "Karan Bhalla",
             room: "CHEM LAB 1"
         },
         {
-            time: "13:30 - 14:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
+            
             time: "14:30 - 15:30",
             subject: "MENTORING CLASS & PROFESSIONAL DEVELOPMENT",
             type: "Class",
@@ -225,7 +170,7 @@ const timetable = {
     Friday: [
         {
             time: "08:30 - 09:30",
-            subject: "MATH II",
+            subject: "MATH 1",
             type: "Lecture",
             teacher: "Ms. Shreya",
             room: "F108"
@@ -238,20 +183,14 @@ const timetable = {
             room: "F108"
         },
         {
-            time: "10:30 - 11:30",
+            time: "10:30 - 12:30",
             subject: "PROGRAMMING FOR PROBLEM SOLVING",
             type: "Practical",
             teacher: "Er. Jaswant Singh Taur",
             room: "R LAB, CSE DEPT"
         },
         {
-            time: "11:30 - 12:30",
-            subject: "BREAK / FREE PERIOD",
-            type: "Break",
-            teacher: "",
-            room: ""
-        },
-        {
+            
             time: "12:30 - 13:30",
             subject: "BREAK / FREE PERIOD",
             type: "Break",
