@@ -1,4 +1,4 @@
- /* =========================================================
+/* =========================================================
    COLLEGE ATTENDANCE WEBSITE
    COMPLETE APP.JS
 ========================================================= */
@@ -8,7 +8,7 @@
    1. TIMETABLE
 ========================================================= */
 
-timetable = {
+const timetable = {
 
     Monday: [
         {
@@ -52,20 +52,158 @@ timetable = {
             type: "Tutorial",
             teacher: "Ms. Shreya",
             room: "F106"
-        },
-        {
-          
+        }
+    ],
 
 
     Tuesday: [
         {
-            
             time: "10:30 - 11:30",
             subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
             type: "Lecture",
             teacher: "Er. Harminder Kaur Aulakh (EC)",
             room: "G6"
-        
+        },
+        {
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
+            type: "Tutorial",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
+            room: "F106"
+        },
+        {
+            time: "13:30 - 15:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
+            type: "Practical",
+            teacher: "Er. Kamalpreet Kaur (EC)",
+            room: "PE LAB (BEE LAB 2)"
+        }
+    ],
+
+
+    Wednesday: [
+        {
+            time: "10:30 - 11:30",
+            subject: "BASIC ELECTRICAL AND ELECTRONICS ENGINEERING",
+            type: "Lecture",
+            teacher: "Er. Harminder Kaur Aulakh (EC)",
+            room: "F107"
+        },
+        {
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 14:30",
+            subject: "PROGRAMMING FOR PROBLEM SOLVING",
+            type: "Practical",
+            teacher: "Er. Jaswant Singh Taur",
+            room: "OS LAB, CSE DEPT"
+        }
+    ],
+
+
+    Thursday: [
+        {
+            time: "08:30 - 09:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
+            type: "Lecture",
+            teacher: "Ms. Manjot Kaur",
+            room: "S205"
+        },
+        {
+            time: "09:30 - 10:30",
+            subject: "MATH 1",
+            type: "Lecture",
+            teacher: "Ms. Shreya",
+            room: "S205"
+        },
+        {
+            time: "10:30 - 11:30",
+            subject: "CHEMISTRY",
+            type: "Lecture",
+            teacher: "Ms. Mandeep Kaur",
+            room: "S205"
+        },
+        {
+            time: "11:30 - 12:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "12:30 - 14:30",
+            subject: "CHEMISTRY",
+            type: "Practical",
+            teacher: "Karan Bhalla",
+            room: "CHEM LAB 1"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "MENTORING CLASS & PROFESSIONAL DEVELOPMENT",
+            type: "Class",
+            teacher: "Er. Goldendeep Kaur, Er. Kuljit Kaur",
+            room: "CSA1, CSA2"
+        }
+    ],
+
+
+    Friday: [
+        {
+            time: "08:30 - 09:30",
+            subject: "MATH 1",
+            type: "Lecture",
+            teacher: "Ms. Shreya",
+            room: "F108"
+        },
+        {
+            time: "09:30 - 10:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
+            type: "Lecture",
+            teacher: "Ms. Manjot Kaur",
+            room: "F108"
+        },
+        {
+            time: "10:30 - 12:30",
+            subject: "PROGRAMMING FOR PROBLEM SOLVING",
+            type: "Practical",
+            teacher: "Er. Jaswant Singh Taur",
+            room: "R LAB, CSE DEPT"
+        },
+        {
+            time: "12:30 - 13:30",
+            subject: "BREAK / FREE PERIOD",
+            type: "Break",
+            teacher: "",
+            room: ""
+        },
+        {
+            time: "13:30 - 14:30",
+            subject: "CHEMISTRY",
+            type: "Lecture",
+            teacher: "Ms. Mandeep Kaur",
+            room: "F106"
+        },
+        {
+            time: "14:30 - 15:30",
+            subject: "PROFESSIONAL ENGLISH COMMUNICATION",
+            type: "Practical",
+            teacher: "Ms. Nisha",
+            room: "W/S SEMINAR HALL"
+        }
+    ]
+};
 
 
 /* =========================================================
@@ -132,7 +270,9 @@ function displayTimetable() {
     const container =
         document.getElementById("timetable");
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = "";
 
@@ -151,6 +291,7 @@ function displayTimetable() {
             <table>
 
                 <thead>
+
                     <tr>
                         <th>S.No.</th>
                         <th>Time</th>
@@ -159,6 +300,7 @@ function displayTimetable() {
                         <th>Teacher</th>
                         <th>Room</th>
                     </tr>
+
                 </thead>
 
                 <tbody></tbody>
@@ -169,18 +311,15 @@ function displayTimetable() {
         const tbody =
             section.querySelector("tbody");
 
-
         timetable[day].forEach(
             (lecture, index) => {
 
                 const row =
                     document.createElement("tr");
 
-
                 if (lecture.type === "Break") {
                     row.className = "break-row";
                 }
-
 
                 row.innerHTML = `
 
@@ -308,7 +447,6 @@ function displayCalendar() {
             currentMonth,
             1
         ).getDay();
-
 
     firstDay =
         firstDay === 0
@@ -698,8 +836,7 @@ function displayDailyAttendance(
     ----------------------------------------------------- */
 
     timetable[weekday].forEach(
-        (lecture, index) => {
-
+        (lecture) => {
 
             /* -------------------------------------------------
                BREAK
@@ -1541,5 +1678,4 @@ function calculateSubjectAttendance() {
 ========================================================= */
 
 displayTimetable();
-
 displayCalendar();
